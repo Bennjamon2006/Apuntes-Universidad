@@ -1,0 +1,133 @@
+\documentclass{article}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem{theorem}{Teorema}
+
+\title{Estadistica y Probabilidad - Variable Aleatoria}
+\author{Benjamín Rivas Beltrán}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Variable Aleatoria y Distribución de Probabilidad}
+
+Una variable aleatoria (v.a.) es una función que toma cada resultado de un experimento aleatorio $x_i$ y le asigna un valor real.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x_i$ & $x_1$ & $x_2$ & $\ldots$ & $x_n$ & $\sum$ \\
+\hline
+$p(x_i)$ & $p(x_1)$ & $p(x_2)$ & $\ldots$ & $p(x_n)$ & 1 \\
+\hline
+\end{tabular}
+\end{table}
+
+Se llama \textbf{distribución de probabilidad} a la función $p(x_i)$ que asigna a cada valor $x_i$ la probabilidad de que la variable aleatoria tome ese valor.
+
+\subsection{Propiedades de la distribución de probabilidad}
+\begin{itemize}
+  \item $0 \leq p(x_i) \leq 1$ para todo $i$.
+    \item $\sum_{i=1}^{n} p(x_i) = 1$.
+\end{itemize}
+
+\subsection{Función de distribución}
+Si tenemos una distribución de probabilidad, podemos determinar su función de distribución $F(x)$, tal que $F(x_i) = P(X \leq x_i)$, es decir, la probabilidad de que la variable aleatoria tome un valor menor o igual a $x_i$.
+
+Entonces, se tiene que:
+\begin{align*}
+F(x_1) &= P(X \leq x_1) = p(x_1) \\
+F(x_2) &= P(X \leq x_2) = p(x_1) + p(x_2) \\
+&\vdots \\
+F(x_i) &= P(X \leq x_i) = \sum_{j=1}^{i} p(x_j) \\
+&\vdots \\
+F(x_n) &= P(X \leq x_n) = \sum_{j=1}^{n} p(x_j) = 1
+\end{align*}
+
+Podemos calcular probabilidades con la distribución de probabilidad o con la función de distribución, y en tal  caso, se tiene que:
+\begin{align*}
+P(a < x < b) &= F(b) - F(a) - p(x = b) \\
+P(a < x \leq b) &= F(b) - F(a) \\
+P(a \leq x < b) &= F(b) - F(a) + p(x = a) - p(x = b) \\
+P(a \leq x \leq b) &= F(b) - F(a) + p(x = a)
+\end{align*}
+
+\subsection{Valor esperado, varianza y función generadora de momentos}
+
+Para cualquier distribución de probabilidad, podemos determinar su valor esperado (promedio), y se denota por $E[X]$
+
+\begin{align*}
+E[X] &= \sum_{i=1}^{n} x_i p(x_i)
+\end{align*}
+
+También podemos determinar su varianza y desviación estándar, y se denotan por $V(X)$ y $\sigma_X$ respectivamente.
+
+\begin{align*}
+V(X) &= E[X^2] - (E[X])^2 \\
+\sigma_X &= \sqrt{V(X)}
+\end{align*}
+
+Donde a $E[X^2]$ se le llama el segundo momento de la variable aleatoria, y se calcula de la siguiente manera:
+\begin{align*}
+E[X^2] &= \sum_{i=1}^{n} x_i^2 p(x_i)
+\end{align*}
+
+En general, el $k$-ésimo momento de la variable aleatoria se denota por $E[X^k]$ y se calcula de la siguiente manera:
+\begin{align*}
+E[X^k] &= \sum_{i=1}^{n} x_i^k p(x_i)
+\end{align*}
+
+Por último, podemos determinar la función generadora de momentos $M_X(t) = E[e^{tX}]$, y se calcula de la siguiente manera:
+\begin{align*}
+M_X(t) &= E[e^{tx_1}] = \sum_{i=1}^{n} e^{tx_i} p(x_i)
+\end{align*}
+
+\begin{theorem}
+Si tenemos un función generadora de momentos $M_X(t)$, su $k$-ésima derivada evaluada en $t=0$ nos da el $k$-ésimo momento de la variable aleatoria, es decir:
+\begin{align*}
+\frac{d^k}{dt^k} M_X(t) \bigg|_{t=0} = E[X^k]
+\end{align*}
+\end{theorem}
+
+\subsection{Propiedades del valor esperado}
+
+Sea $x$ una variable aleatoria y $C, a, b \in \R$ constantes, entonces se cumplen las siguientes propiedades:
+
+\begin{itemize}
+    \item $E[C] = C$.
+    \item $E[Cx] = C E[X]$.
+    \item Si tenemos una combinación lineal $y = a + b x$, entonces:
+      \begin{align*}
+      E[y] &= E[a + b x] \\
+      &= E[a] + E[b x] \\
+      &= a + b E[X]
+      \end{align*}
+\end{itemize}
+
+\subsection{Propiedades de la varianza}
+Sea $X$ una variable aleatoria y $C, a, b \in \R$ constantes, entonces se cumplen las siguientes propiedades:
+
+\begin{itemize}
+    \item $V(C) = 0$.
+    \item $V(CX) = C^2 V(X)$.
+    \item Si tenemos una combinación lineal $Y = a + bX $, entonces:
+      \begin{align*}
+      V(Y) &= V(a + bX) \\
+      &= V(a) + V(bX) \\
+      &= 0 + b^2 V(X) \\
+      &= b^2 V(X)
+      \end{align*}
+\end{itemize}
+
+\end{document}
