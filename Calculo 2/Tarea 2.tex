@@ -1,0 +1,390 @@
+\documentclass{article}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,tikz}
+\usepackage{cancel}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\title{Tarea 2 Cálculo II}
+\author{Benjamín Rivas Beltrán}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Suma áreas triángulo}
+
+Dado un triángulo equilátero de lado $a$.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw (0,0) -- (4,0) -- (2, {2 * sqrt(3)}) -- cycle;
+        \node at (2,-0.35) {$a$};
+        \node at (0.65, {sqrt(3) + 0.15}) {$a$};
+        \node at (3.35, {sqrt(3) + 0.15}) {$a$};
+    \end{tikzpicture}
+\end{center}
+
+Su área se puede calcular trazando una altura y dividiendo el triángulo en dos triángulos rectángulos. La altura se puede calcular usando el teorema de Pitágoras:
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw (0,0) -- (4,0) -- (2, {2 * sqrt(3)}) -- cycle;
+        \draw[dashed] (2,0) -- (2, {2 * sqrt(3)});
+        \node at (2,-0.35) {$a$};
+        \node at (0.65, {sqrt(3) + 0.15}) {$a$};
+        \node at (3.35, {sqrt(3) + 0.15}) {$a$};
+        \node at (2.5, {sqrt(3) - 0.15}) {$h$};
+        \node at (1.2,0.35) {$\frac{a}{2}$};
+        \node at (2.8,0.35) {$\frac{a}{2}$};
+    \end{tikzpicture}
+\end{center}
+
+Usando el teorema de Pitágoras, tenemos:
+\begin{align*}
+h^2 + \left(\frac{a}{2}\right)^2 &= a^2 \\
+h^2 + \frac{a^2}{4} &= a^2 \\
+h^2 &= a^2 - \frac{a^2}{4} \\
+h^2 &= \frac{3a^2}{4} \\
+h &= \frac{\sqrt{3}a}{2}
+\end{align*}
+
+Aplicando la fórmula del área de un triángulo, tenemos:
+\begin{align*}
+A &= \frac{1}{2} \cdot base \cdot altura \\
+&= \frac{1}{2} \cdot a \cdot \frac{\sqrt{3}a}{2} \\
+&= \frac{\sqrt{3}a^2}{4}
+\end{align*}
+
+Dado que el primer triángulo tiene lado $1$ y cada triángulo siguiente tiene como lado la mitad del lado del triángulo anterior, el lado del $n$-ésimo triángulo es $\frac{1}{2^{n-1}}$. Por lo tanto, el área del $n$-ésimo triángulo es:
+\begin{align*}
+A_n &= \frac{\sqrt{3}}{4} \left(\frac{1}{2^{n-1}}\right)^2 \\
+&= \frac{\sqrt{3}}{4} \cdot \frac{1}{2^{2(n-1)}}\\
+&= \frac{\sqrt{3}}{4} \cdot \frac{1}{2^{2n-2}}
+\end{align*}
+
+Luego, la suma de las áreas de todos los triángulos es:
+\begin{align*}
+S = \sum_{n=1}^{\infty} A_n &= \sum_{n=1}^{\infty} \frac{\sqrt{3}}{4} \cdot \frac{1}{2^{2n-2}}\\
+&= \frac{\sqrt{3}}{4} \sum_{n=1}^{\infty} \frac{1}{2^{2n-2}}\\
+&= \frac{\sqrt{3}}{4} \sum_{n=1}^{\infty} \frac{1}{4^{n-1}}\\
+&= \frac{\sqrt{3}}{4} \sum_{n=1}^{\infty} \left(\frac{1}{4}\right)^{n-1}\\
+\end{align*}
+
+La cual es una serie geométrica con razón $\frac{1}{4}$, por lo que su suma es:
+\begin{align*}
+S &= \frac{\sqrt{3}}{4} \cdot \frac{1}{1 - \frac{1}{4}}\\
+&= \frac{\sqrt{3}}{4} \cdot \frac{1}{\frac{3}{4}}\\
+&= \frac{\sqrt{3}}{4} \cdot \frac{4}{3}\\
+&= \boxed{\frac{\sqrt{3}}{3}}
+\end{align*}
+
+Por lo tanto, la suma de las áreas de todos los triángulos es $\frac{\sqrt{3}}{3}$.
+
+\section{Serie por sumas parciales}
+
+\[
+S = \sum_{n=1}^{\infty} \frac{3}{2n^2 + 2n}
+\]
+
+Desarrollando el término general, tenemos:
+\begin{align*}
+\frac{3}{2n^2 + 2n} &= \frac{3}{2n(n+1)}\\
+&= \frac{3}{2} \cdot \frac{1}{n(n+1)}\\
+&= \frac{3}{2} \cdot \frac{1+n-n}{n(n+1)}\\
+&= \frac{3}{2} \left(\frac{1 + n}{n(n+1)} - \frac{n}{n(n+1)}\right)\\
+&= \frac{3}{2} \left(\frac{1}{n} - \frac{1}{n+1}\right)
+\end{align*}
+
+Reemplazando:
+\begin{align*}
+S = \frac{3}{2} \sum_{n=1}^{\infty} \left( \frac{1}{n} - \frac{1}{n + 1} \right)
+\end{align*}
+
+Sea $a_n = \frac{1}{n}$, entonces:
+\[
+S = \frac{3}{2} \sum_{n=1}^\infty \left( a_n - a_{n + 1}\right)
+\]
+
+Sea $N \in \N$, y:
+\[
+S_N = \frac{3}{2} \sum_{n=1}^N \left( a_n - a_{n + 1}\right)
+\]
+
+Expandiendo la suma, tenemos:
+\begin{align*}
+S_N &= \frac{3}{2} \left( (a_1 - a_2) + (a_2 - a_3) + \ldots + (a_{N-1} - a_N) + (a_N - a_{N+1}) \right)\\
+&= \frac{3}{2} (a_1 - \cancel{a_2} + \cancel{a_2} - \cancel{a_3} + \cancel{a_3} - \ldots - \cancel{a_N} + \cancel{a_N} - a_{N+1})\\
+&= \frac{3}{2} (a_1 - a_{N+1})\\
+&= \frac{3}{2} \left(1 - \frac{1}{N+1}\right)\\
+&= \frac{3}{2} \cdot \frac{N}{N+1}
+\end{align*}
+
+Tomando el límite cuando $N$ tiende a infinito, tenemos:
+\begin{align*}
+S = \lim_{N \to \infty} S_N &= \lim_{N \to \infty} \frac{3}{2} \cdot \frac{N}{N+1}\\
+&= \frac{3}{2} \cdot \lim_{N \to \infty} \frac{N}{N+1}\\
+&= \frac{3}{2} \cdot \lim_{N \to \infty} \frac{N}{N \left(1 + \frac{1}{N} \right)}\\
+&= \frac{3}{2} \cdot \lim_{N \to \infty} \frac{1}{1 + \frac{1}{N}}\\
+&= \frac{3}{2} \cdot \frac{1}{1 + 0}\\
+&= \boxed{\frac{3}{2}}
+\end{align*}
+
+\[
+\therefore
+\quad
+\sum_{n=1}^{\infty} \frac{3}{2n^2 + 2n} = \frac{3}{2}
+\]
+
+\section{Convergencia de series}
+
+\subsection{$\sum_{n=1}^{\infty} \frac{(-2)^{2n+1}}{7^n}$}
+
+Reescribiendo el término general, tenemos:
+\begin{align*}
+\frac{(-2)^{2n+1}}{7^n} &= \frac{(-2)^{2n} \cdot (-2)}{7^n} \\
+&= \frac{(-2)^{2n}}{7^n} \cdot (-2) \\
+&= \frac{4^n}{7^n} \cdot (-2) \\
+&= \left(\frac{4}{7}\right)^n \cdot (-2)
+\end{align*}
+
+Reemplazando:
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{(-2)^{2n+1}}{7^n} &= \sum_{n=1}^{\infty} \left(\frac{4}{7}\right)^n \cdot (-2) \\
+&= -2 \sum_{n=1}^{\infty} \left(\frac{4}{7}\right)^n \\
+&= -2 \sum_{n=1}^{\infty} \left(\frac{4}{7}\right)^{n-1+1} \\
+&= -2 \sum_{n=1}^{\infty} \left(\frac{4}{7}\right)^{n-1} \cdot \frac{4}{7} \\
+&= -2 \cdot \frac{4}{7} \sum_{n=1}^{\infty} \left(\frac{4}{7}\right)^{n-1} \\
+&= -\frac{8}{7} \sum_{n=1}^{\infty} \left(\frac{4}{7}\right)^{n-1}
+\end{align*}
+
+La cual es una serie geométrica con razón $\frac{4}{7} < 1$, por lo tanto, la serie es convergente.
+
+\subsection{$\sum_{n=1}^{\infty} (\frac{n}{n+1})^{-2n}$}
+
+Sea $a_n = (\frac{n}{n+1})^{-2n}$, entonces:
+\begin{align*}
+a_n &= \left(\frac{n}{n+1}\right)^{-2n} \\
+&= \left(\frac{n+1}{n}\right)^{2n} \\
+\end{align*}
+
+Se sabe que para que la serie $\sum_{n=1}^{\infty} a_n$ sea convergente, es necesario que $\lim_{n \to \infty} a_n = 0$. Por lo tanto, calculamos el límite:
+\begin{align*}
+L = \lim_{n \to \infty} a_n &= \lim_{n \to \infty} \left(\frac{n+1}{n}\right)^{2n} \\
+&= \lim_{n \to \infty} e^{\ln(\left(\frac{n+1}{n}\right)^{2n})} \\
+&= \lim_{n \to \infty} e^{2n \ln(\frac{n+1}{n})} \\
+&= e^{\lim_{n \to \infty} 2n \ln(\frac{n+1}{n})} \\
+&= e^{\lim_{n \to \infty} 2n \ln(1 + \frac{1}{n})} \\
+&= e^{\lim_{n \to \infty} \frac{\ln(1 + \frac{1}{n})}{\frac{1}{2n}}} 
+\end{align*}
+
+Aplicando L'Hôpital:
+\begin{align*}
+L &= e^{\lim_{n \to \infty} \frac{\frac{-1}{n^2(1 + \frac{1}{n})}}{-\frac{1}{2n^2}}} \\
+&= e^{\lim_{n \to \infty} \frac{2}{1 + \frac{1}{n}}} \\
+&= e^{\frac{2}{1 + 0}} \\
+&= e^2
+\end{align*}
+
+Dado que $L = e^2 \neq 0$, la serie $\sum_{n=1}^{\infty} (\frac{n}{n+1})^{-2n}$ es divergente.
+
+\subsection{$\sum_{n=3}^{\infty} n^3 e^{-n^4}$}
+
+Sea $f : [3, \infty)  \to (0, \infty)$ una función dada por:
+\begin{align*}
+f(x) = x^3 e^{-x^4}
+\end{align*}
+
+Note que, para $x \geq 3$, se tiene que $f(x) > 0$. Pues $e^{-x^4} > 0$ para todo $x \in \R$, y $x^3 > 0$ para todo $x > 0$. Además, note que $f$ es una función continua, pues es el producto de funciones continuas.
+
+Derivando $f$, tenemos:
+\begin{align*}
+f'(x) &= 3x^2 e^{-x^4} + x^3 \cdot (-4x^3) e^{-x^4} \\
+&= 3x^2 e^{-x^4} - 4x^6 e^{-x^4} \\
+&= e^{-x^4} (3x^2 - 4x^6) \\
+&= x^2 e^{-x^4} (3 - 4x^4)
+\end{align*}
+
+Note que, para $x \geq 3$, se tiene que:
+\begin{align*}
+x^4 &\geq 81 \\
+4x^4 &\geq 324 \\
+-4x^4 &\leq -324 \\
+3 - 4x^4 &\leq 3 - 324 \\
+3 - 4x^4 &\leq -321 < 0
+\end{align*}
+
+Por lo tanto, $f'(x) < 0$ para todo $x \geq 3$, lo que implica que $f$ es una función decreciente en el intervalo $[3, \infty)$.
+
+Dado que $f$ es una función positiva, continua y decreciente en el intervalo $[3, \infty)$, se puede aplicar el criterio de la integral para determinar la convergencia de la serie $\sum_{n=3}^{\infty} n^3 e^{-n^4}$.
+Calculando la integral impropia, tenemos:
+\begin{align*}
+\int_3^{\infty} x^3 e^{-x^4} dx &= \lim_{t \to \infty} \int_3^t x^3 e^{-x^4} dx
+\end{align*}
+
+Haciendo el cambio de variable $u = -x^4$, tenemos $du = -4x^3 dx$, lo que implica que $-du/4 = x^3 dx$. Además, cuando $x = 3$, se tiene que $u = -81$, y cuando $x = t$, se tiene que $u = -t^4$. Por lo tanto:
+\begin{align*}
+\int_3^t x^3 e^{-x^4} dx &= \int_{-81}^{-t^4} e^u \cdot \left(-\frac{du}{4}\right) \\
+&= -\frac{1}{4} \int_{-81}^{-t^4} e^u du \\
+&= -\frac{1}{4} \left( e^{-t^4} - e^{-81} \right) \\
+&= \frac{1}{4} \left( e^{-81} - e^{-t^4} \right)
+\end{align*}
+
+Tomando el límite cuando $t$ tiende a infinito, tenemos:
+\begin{align*}
+\int_3^{\infty} x^3 e^{-x^4} dx &= \lim_{t \to \infty} \frac{1}{4} \left( e^{-81} - e^{-t^4} \right) \\
+&= \frac{1}{4} \left( e^{-81} - 0 \right) \\
+&= \frac{e^{-81}}{4} \\
+&= \boxed{\frac{1}{4 \cdot e^{81}}}
+\end{align*}
+
+Dado que la integral impropia $\int_3^{\infty} x^3 e^{-x^4} dx$ es convergente, se concluye que la serie $\sum_{n=3}^{\infty} n^3 e^{-n^4}$ también es convergente.
+
+\section{Intervalo de convergencia}
+
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{(-1)^{n+1} \cdot x^n}{2^n \cdot (n+3)}
+\end{align*}
+
+Sea $x \in \R$, se puede aplicar el criterio de la raíz para determinar el intervalo de convergencia de la serie. Calculando el límite, tenemos:
+\begin{align*}
+L = \lim_{n \to \infty} \sqrt[n]{\left|\frac{(-1)^{n+1} \cdot x^n}{2^n \cdot (n+3)}\right|} &= \lim_{n \to \infty} \sqrt[n]{\frac{|x|^n}{2^n \cdot (n+3)}} \\
+&= \lim_{n \to \infty} \frac{|x|}{2} \cdot \sqrt[n]{\frac{1}{n+3}} \\
+&= \frac{|x|}{2} \cdot \lim_{n \to \infty} \sqrt[n]{\frac{1}{n+3}} \\
+&= \frac{|x|}{2} \cdot \lim_{n \to \infty} \frac{1}{\sqrt[n]{n+3}} \\
+&= \frac{|x|}{2} \cdot \frac{1}{\lim_{n \to \infty} \sqrt[n]{n+3}} \\
+&= \frac{|x|}{2} \cdot \frac{1}{\lim_{n \to \infty} e^{\ln \sqrt[n]{n+3}}} \\
+&= \frac{|x|}{2} \cdot \frac{1}{\lim_{n \to \infty} e^{\frac{1}{n} \ln (n+3)}} \\
+&= \frac{|x|}{2} \cdot \frac{1}{e^{\lim_{n \to \infty} \frac{1}{n} \ln (n+3)}} \\
+&= \frac{|x|}{2} \cdot \frac{1}{e^{\lim_{n \to \infty} \frac{\ln (n+3)}{n}}} \\
+&= \frac{|x|}{2} \cdot \frac{1}{e^0} \\
+&= \frac{|x|}{2}
+\end{align*}
+
+Dado que $L = \frac{|x|}{2}$, la serie es convergente si $L < 1$, lo que implica que $|x| < 2$. Por lo tanto, el intervalo de convergencia de la serie es $(-2, 2)$.
+
+\section{Expansión de $\ln(1-x^2)$}
+
+Sea $f : (-1, 1) \to \R_{\leq 0}$ una función dada por:
+\begin{align*}
+f(x) = \ln(1-x^2)
+\end{align*}
+
+Factorizando y aplicando la propiedad de los logaritmos, tenemos:
+\begin{align*}
+f(x) &= \ln((1-x)(1+x)) \\
+&= \ln(1-x) + \ln(1+x)
+\end{align*}
+
+Derivando $f$, tenemos:
+\begin{align*}
+f'(x) &= \frac{1}{1-x} \cdot (-1) + \frac{1}{1+x} \cdot (1) \\
+&= -\frac{1}{1-x} + \frac{1}{1+x} \\
+&= \frac{1}{1+x} - \frac{1}{1-x} \\
+&= \frac{1}{1-(-x)} - \frac{1}{1-x} \\
+\end{align*}
+
+Note que, para $x \in (-1, 1)$, se tiene que $-x \in (-1, 1)$. Por lo tanto, se puede aplicar la expansión de serie geométrica para cada término:
+
+\begin{align*}
+f'(x) &= \sum_{n=0}^{\infty} (-x)^n - \sum_{n=0}^{\infty} x^n \\
+&= \sum_{n=0}^{\infty} (-1)^n x^n - \sum_{n=0}^{\infty} x^n \\
+&= \sum_{n=0}^{\infty} \left( (-1)^n - 1 \right) x^n
+\end{align*}
+
+Note que, para $n$ par, se tiene que $(-1)^n - 1 = 0$, y para $n$ impar, se tiene que $(-1)^n - 1 = -2$. Por lo tanto, se pueden tomar solo los términos impares de la serie:
+\begin{align*}
+f'(x) &= \sum_{n=0}^{\infty} \left((-1)^{2n+1} - 1\right) x^{2n+1} \\
+&= \sum_{n=0}^{\infty} (-2) x^{2n+1} \\
+&= -2 \sum_{n=0}^{\infty} x^{2n+1} \\
+\end{align*}
+
+Integrando ambos lados, tenemos:
+\begin{align*}
+\int f'(x) dx &= \int -2 \sum_{n=0}^{\infty} x^{2n+1} dx \\
+f(x) &= -2 \sum_{n=0}^{\infty} \int x^{2n+1} dx \\
+&= -2 \sum_{n=0}^{\infty} \frac{x^{2n+2}}{2n+2} + C \\
+&= - \sum_{n=0}^{\infty} \frac{x^{2n+2}}{n+1} + C\\
+&= - \sum_{n=1}^{\infty} \frac{x^{2n}}{n} + C
+\end{align*}
+
+Dado que $f(0) = \ln(1-0^2) = 0$, se tiene que:
+\begin{align*}
+0 &= f(0) \\
+0 &= - \sum_{n=1}^{\infty} \frac{0^{2n}}{n} + C \\
+0 &= - \sum_{n=1}^{\infty} 0 + C \\
+0 &= C
+\end{align*}
+
+Por lo tanto, la expansión de $\ln(1-x^2)$ es:
+\begin{align*}
+\ln(1-x^2) &= - \sum_{n=1}^{\infty} \frac{x^{2n}}{n} \\
+&= -x^2 - \frac{x^4}{2} - \frac{x^6}{3} - \frac{x^8}{4} - \ldots
+\end{align*}
+
+\section{Serie de Taylor de $\sin(2x)$ alrededor de $x = \frac{\pi}{2}$}
+
+Sea $f : \R \to \R$ una función dada por:
+\begin{align*}
+f(x) = \sin(2x)
+\end{align*}
+
+Derivando $f$, tenemos:
+\begin{align*}
+f'(x) &= 2 \cos(2x) \\
+f''(x) &= -4 \sin(2x) \\
+f'''(x) &= -8 \cos(2x) \\
+f^{(4)}(x) &= 16 \sin(2x) \\
+f^{(5)}(x) &= 32 \cos(2x) \\
+f^{(6)}(x) &= -64 \sin(2x) \\
+f^{(7)}(x) &= -128 \cos(2x) \\
+f^{(8)}(x) &= 256 \sin(2x) \\
+\end{align*}
+
+Las derivadas de $f$ siguen un patrón si separan los casos en que $n$ es par o impar. Para $n$ par, se tiene que:
+\begin{align*}
+f^{(n)}(x) &= (-1)^{\frac{n}{2}} 2^n \sin(2x)
+\end{align*}
+
+Y para $n$ impar, se tiene que:
+\begin{align*}
+f^{(n)}(x) &= (-1)^{\frac{n-1}{2}} 2^n \cos(2x)
+\end{align*}
+
+Reemplazando $x = \frac{\pi}{2}$, tenemos:
+\begin{align*}
+f^{(n)}\left(\frac{\pi}{2}\right) &= \begin{cases}
+(-1)^{\frac{n}{2}} 2^n \sin(\pi) & \text{si } n \text{ es par} \\
+(-1)^{\frac{n-1}{2}} 2^n \cos(\pi) & \text{si } n \text{ es impar}
+\end{cases} \\
+&= \begin{cases}
+0 & \text{si } n \text{ es par} \\
+(-1)^{\frac{n-1}{2}} 2^n \cdot (-1) & \text{si } n \text{ es impar}
+\end{cases} \\
+&= \begin{cases}
+0 & \text{si } n \text{ es par} \\
+(-1)^{\frac{n+1}{2}} 2^n & \text{si } n \text{ es impar}
+\end{cases} 
+\end{align*}
+
+Dado que $f^{(n)}\left(\frac{\pi}{2}\right) = 0$ para todo $n$ par, solo se tomarán los términos impares de la serie de Taylor. Por lo tanto, la serie de Taylor de $\sin(2x)$ alrededor de $x = \frac{\pi}{2}$ es:
+\begin{align*}
+\sum_{n=0}^{\infty} \frac{f^{(2n+1)}\left(\frac{\pi}{2}\right)}{(2n+1)!} \left(x - \frac{\pi}{2}\right)^{2n+1} &= \sum_{n=0}^{\infty} \frac{(-1)^{n+1} 2^{2n+1}}{(2n+1)!} \left(x - \frac{\pi}{2}\right)^{2n+1} \\
+&= -2 \sum_{n=0}^{\infty} \frac{(-1)^n 2^{2n}}{(2n+1)!} \left(x - \frac{\pi}{2}\right)^{2n+1} \\
+&= -2 \sum_{n=0}^{\infty} \frac{(-1)^n 4^n}{(2n+1)!} \left(x - \frac{\pi}{2}\right)^{2n+1}
+\end{align*}
+
+Finalmente, la serie de Taylor de $\sin(2x)$ alrededor de $x = \frac{\pi}{2}$ es:
+\begin{align*}
+\sin(2x) &= -2 \sum_{n=0}^{\infty} \frac{(-1)^n 4^n}{(2n+1)!} \left(x - \frac{\pi}{2}\right)^{2n+1} \\
+&= -2 \left( \frac{1}{1!} \left(x - \frac{\pi}{2}\right) - \frac{4}{3!} \left(x - \frac{\pi}{2}\right)^3 + \frac{16}{5!} \left(x - \frac{\pi}{2}\right)^5 \mp \ldots \right)
+\end{align*}
+
+\end{document}
+
