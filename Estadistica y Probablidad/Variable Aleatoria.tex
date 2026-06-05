@@ -123,9 +123,12 @@ Sea $X$ una variable aleatoria y $C, a, b \in \R$ constantes, entonces se cumple
     \item $V(CX) = C^2 V(X)$.
     \item Si tenemos una combinación lineal $Y = a + bX $, entonces:
       \begin{align*}
-      V(Y) &= V(a + bX) \\
-      &= V(a) + V(bX) \\
-      &= 0 + b^2 V(X) \\
+      V(Y) &= E[Y^2] - (E[Y])^2 \\
+      &= E[(a + bX)^2] - (E[a + bX])^2 \\
+      &= E[a^2 + 2abX + b^2 X^2] - (a + b E[X])^2 \\
+      &= a^2 + 2ab E[X] + b^2 E[X^2] - (a^2 + 2ab E[X] + b^2 (E[X])^2) \\
+      &= a^2 + 2ab E[X] + b^2 E[X^2] - a^2 - 2ab E[X] - b^2 (E[X])^2 \\
+      &= b^2 (E[X^2] - (E[X])^2) \\
       &= b^2 V(X)
       \end{align*}
 \end{itemize}
