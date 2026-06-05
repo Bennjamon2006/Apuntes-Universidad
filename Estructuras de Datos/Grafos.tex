@@ -1,0 +1,47 @@
+\documentclass{article}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+
+\newtheorem{definition}{Definición}
+
+\title{Grafos}
+\author{Benjamín Rivas Beltrán}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Teoria de grafos}
+
+\begin{definition}{Grafo}
+
+  Un grafo es un par $G = (V, E)$ donde $V$ es un conjunto de vértices y $E$ es un conjunto de aristas, con $E$ siendo un subconjunto de $V \times V$.
+\end{definition}
+
+\begin{itemize}
+  \item Los vértices son puntos y las aristas son líneas que conectan los vértices.
+  \item Un vértice puede tener 0 o más aristas conectadas a él.
+  \item Cada una de las aristas conecta exactamente dos vértices.
+  \item El orden de un grafo es el número de vértices que tiene. Denotamos el orden de un grafo $G$ como $|V|$.
+  \item Si $|V|$ es finito, entonces el grafo se llama grafo finito. 
+  \item 
+\end{itemize}
+
+\section{Grafos dirigidos y no dirigidos}
+\begin{definition}{Grafo no dirigido}
+
+  Un grafo no dirigido es un grafo $G = (V, E)$ donde las aristas no tienen dirección. Es decir, si $(u, v) \in E$, entonces también $(v, u) \in E$.
+\end{definition}
+
+\begin{definition}{Grafo dirigido}
+
+  Un grafo dirigido es un grafo $G = (V, E)$ donde las aristas tienen una dirección. Es decir, si $(u, v) \in E$, entonces no necesariamente $(v, u) \in E$.
+\end{definition}
+
+\begin{definition}{Extremo de una arista}
+
+Si $(u, v) \in E$, entonces $u$ y $v$ son los extremos de la arista.
+\end{definition}
+\end{document}
