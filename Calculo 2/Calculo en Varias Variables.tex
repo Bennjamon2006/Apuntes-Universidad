@@ -1,0 +1,114 @@
+\documentclass{article}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\inner}[2]{\langle #1, #2 \rangle}
+\newcommand{\norm}[1]{\| #1 \|}
+
+\title{Calculo en varias variables}
+\author{Benjamín Rivas Beltrán}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Nociones básicas de $\R^n$}
+
+$(\R^n, +, \cdot)$ es un espacio vectorial  sobre $\R$.
+
+\newtheorem{definition}{Definición}
+
+\begin{definition}{Producto interior en $\R^n$}
+
+Sean $\vec{x}, \vec{y} \in \R^n$ con:
+\[
+\vec{x} = (x_1, x_2, \dots, x_n) \quad \text{y} \quad \vec{y} = (y_1, y_2, \dots, y_n) \]
+El producto interior de $\vec{x}$ y $\vec{y}$ es el número real dado por:
+
+\begin{align*}
+\inner{\vec{x}}{\vec{y}} &= x_1 y_1 + x_2 y_2 + \dots + x_n y_n \\
+&= \sum_{i=1}^n x_i y_i
+\end{align*}
+
+\end{definition}
+
+\begin{definition}{Norma en $\R^n$}
+Sea $\vec{x} \in \R^n$ con $\vec{x} = (x_1, x_2, \dots, x_n)$. La norma de $\vec{x}$ es el número real dado por:
+\[
+\norm{\vec{x}} = \sqrt{\inner{\vec{x}}{\vec{x}}}
+\]
+
+Expandiendo la definición, tenemos:
+
+\begin{align*}
+\norm{\vec{x}} &= \sqrt{x_1^2 + x_2^2 + \dots + x_n^2} \\
+&= \sqrt{\sum_{i=1}^n x_i^2}
+\end{align*}
+
+Esta es conocida como norma inducida por el producto interior en $\R^n$.
+
+\end{definition}
+
+\section{Espacios en $\R^n$}
+
+\begin{definition}{Bola abierta en $\R^n$}
+
+  Sea $\vec{a} \in \R^n$ y $r > 0$. La bola abierta de centro $\vec{a}$ y radio $r$ es el conjunto:
+\[
+B(\vec{a}, r) = \{ \vec{x} \in \R^n : \norm{\vec{x} - \vec{a}} < r \}
+\]
+\end{definition}
+
+\begin{definition}{Bola cerrada en $\R^n$}
+
+  Sea $\vec{a} \in \R^n$ y $r > 0$. La bola cerrada de centro $\vec{a}$ y radio $r$ es el conjunto:
+\[
+\overline{B}(\vec{a}, r) = \{ \vec{x} \in \R^n : \norm{\vec{x} - \vec{a}} \leqq r \}
+\]
+\end{definition}
+
+\begin{definition}{Punto interior de un conjunto en $\R^n$}
+
+Sea $A \subseteq \R^n$. Un punto $\vec{a} \in A$ es un punto interior de $A$ si existe $r > 0$ tal que $B(\vec{a}, r) \subseteq A$.
+\end{definition}
+
+\begin{definition}{Punto de frontera de un conjunto en $\R^n$}
+
+Sea $A \subseteq \R^n$. Un punto $\vec{a} \in \R^n$ es un punto de frontera de $A$ si para todo $r > 0$, $B(\vec{a}, r)$ contiene puntos tanto de $A$ como de $A^c$.
+\end{definition}
+
+\begin{definition}{Punto de acumulación de un conjunto en $\R^n$}
+
+Sea $A \subseteq \R^n$. Un punto $\vec{a} \in \R^n$ es un punto de acumulación de $A$ si para todo $r > 0$, $B(\vec{a}, r)$ contiene al menos un punto de $A$ distinto de $\vec{a}$.
+\end{definition}
+
+\begin{definition}{Punto aislado de un conjunto en $\R^n$}
+
+Sea $A \subseteq \R^n$. Un punto $\vec{a} \in A$ es un punto aislado de $A$ si existe $r > 0$ tal que $B(\vec{a}, r) \cap A = \{\vec{a}\}$.
+\end{definition}
+
+\begin{definition}[Interior de un conjunto]
+Sea A $\subseteq \R^n$. El interior de A es el conjunto de todos los puntos interiores de A.
+
+Se denota por
+
+\[
+\operatorname{Int}(A)
+\].
+
+o simplemente
+
+\[
+A^\circ.
+\]
+\end{definition}
+
+\end{document}
