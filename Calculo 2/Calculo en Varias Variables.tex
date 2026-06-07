@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage[spanish]{babel}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -9,8 +9,21 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 
+\newcommand{\vect}[1]{\vec{#1}}
 \newcommand{\inner}[2]{\langle #1, #2 \rangle}
 \newcommand{\norm}[1]{\| #1 \|}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[section]
+\newtheorem{example}[definition]{Ejemplo}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Teorema}
+\newtheorem{proposition}[definition]{Proposición}
+\newtheorem{lemma}[definition]{Lema}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Observación}
 
 \title{Calculo en varias variables}
 \author{Benjamín Rivas Beltrán}
@@ -24,32 +37,40 @@
 
 $(\R^n, +, \cdot)$ es un espacio vectorial  sobre $\R$.
 
-\newtheorem{definition}{Definición}
+\begin{definition}[Producto interior en $\R^n$]
 
-\begin{definition}{Producto interior en $\R^n$}
-
-Sean $\vec{x}, \vec{y} \in \R^n$ con:
+Sean $\vect{x}, \vect{y} \in \R^n$ con:
 \[
-\vec{x} = (x_1, x_2, \dots, x_n) \quad \text{y} \quad \vec{y} = (y_1, y_2, \dots, y_n) \]
-El producto interior de $\vec{x}$ y $\vec{y}$ es el número real dado por:
-
+\vect{x} = (x_1, x_2, \dots, x_n) \quad \text{y} \quad \vect{y} = (y_1, y_2, \dots, y_n) \]
+El producto interior de $\vect{x}$ y $\vect{y}$ es el número real dado por:
 \begin{align*}
-\inner{\vec{x}}{\vec{y}} &= x_1 y_1 + x_2 y_2 + \dots + x_n y_n \\
+\inner{\vect{x}}{\vect{y}} &= x_1 y_1 + x_2 y_2 + \dots + x_n y_n \\
 &= \sum_{i=1}^n x_i y_i
 \end{align*}
 
 \end{definition}
 
-\begin{definition}{Norma en $\R^n$}
-Sea $\vec{x} \in \R^n$ con $\vec{x} = (x_1, x_2, \dots, x_n)$. La norma de $\vec{x}$ es el número real dado por:
+\begin{example}
+
+Sea $\vect{x} = (1, 2, 3)$ y $\vect{y} = (4, 5, 6)$. Entonces:
+\begin{align*}
+\inner{\vect{x}}{\vect{y}} &= 1 \cdot 4 + 2 \cdot 5 + 3 \cdot 6 \\
+&= 4 + 10 + 18 \\
+&= 32
+\end{align*}
+
+\end{example}
+
+\begin{definition}[Norma en $\R^n$]
+
+Sea $\vect{x} \in \R^n$ con $\vect{x} = (x_1, x_2, \dots, x_n)$. La norma de $\vect{x}$ es el número real dado por:
 \[
-\norm{\vec{x}} = \sqrt{\inner{\vec{x}}{\vec{x}}}
+\norm{\vect{x}} = \sqrt{\inner{\vect{x}}{\vect{x}}}
 \]
 
 Expandiendo la definición, tenemos:
-
 \begin{align*}
-\norm{\vec{x}} &= \sqrt{x_1^2 + x_2^2 + \dots + x_n^2} \\
+\norm{\vect{x}} &= \sqrt{x_1^2 + x_2^2 + \dots + x_n^2} \\
 &= \sqrt{\sum_{i=1}^n x_i^2}
 \end{align*}
 
@@ -57,58 +78,174 @@ Esta es conocida como norma inducida por el producto interior en $\R^n$.
 
 \end{definition}
 
+\begin{example}
+  
+Sea $\vect{x} = (3, 4)$. Entonces:
+\begin{align*}
+\norm{\vect{x}} &= \sqrt{3^2 + 4^2} \\
+&= \sqrt{9 + 16} \\
+&= \sqrt{25} \\
+&= 5
+\end{align*}
+
+\end{example}
+
 \section{Espacios en $\R^n$}
 
-\begin{definition}{Bola abierta en $\R^n$}
+\begin{definition}[Bola abierta en $\R^n$]
 
-  Sea $\vec{a} \in \R^n$ y $r > 0$. La bola abierta de centro $\vec{a}$ y radio $r$ es el conjunto:
+Sea $\vect{a} \in \R^n$ y $r > 0$. La bola abierta de centro $\vect{a}$ y radio $r$ es el conjunto:
 \[
-B(\vec{a}, r) = \{ \vec{x} \in \R^n : \norm{\vec{x} - \vec{a}} < r \}
+B(\vect{a}, r) = \{ \vect{x} \in \R^n : \norm{\vect{x} - \vect{a}} < r \}
 \]
 \end{definition}
 
-\begin{definition}{Bola cerrada en $\R^n$}
+\begin{definition}[Bola cerrada en $\R^n$]
 
-  Sea $\vec{a} \in \R^n$ y $r > 0$. La bola cerrada de centro $\vec{a}$ y radio $r$ es el conjunto:
+Sea $\vect{a} \in \R^n$ y $r > 0$. La bola cerrada de centro $\vect{a}$ y radio $r$ es el conjunto:
 \[
-\overline{B}(\vec{a}, r) = \{ \vec{x} \in \R^n : \norm{\vec{x} - \vec{a}} \leqq r \}
+\overline{B}(\vect{a}, r) = \{ \vect{x} \in \R^n : \norm{\vect{x} - \vect{a}} \leq r \}
 \]
 \end{definition}
 
-\begin{definition}{Punto interior de un conjunto en $\R^n$}
+\begin{definition}[Punto interior de un conjunto en $\R^n$]
 
-Sea $A \subseteq \R^n$. Un punto $\vec{a} \in A$ es un punto interior de $A$ si existe $r > 0$ tal que $B(\vec{a}, r) \subseteq A$.
-\end{definition}
-
-\begin{definition}{Punto de frontera de un conjunto en $\R^n$}
-
-Sea $A \subseteq \R^n$. Un punto $\vec{a} \in \R^n$ es un punto de frontera de $A$ si para todo $r > 0$, $B(\vec{a}, r)$ contiene puntos tanto de $A$ como de $A^c$.
-\end{definition}
-
-\begin{definition}{Punto de acumulación de un conjunto en $\R^n$}
-
-Sea $A \subseteq \R^n$. Un punto $\vec{a} \in \R^n$ es un punto de acumulación de $A$ si para todo $r > 0$, $B(\vec{a}, r)$ contiene al menos un punto de $A$ distinto de $\vec{a}$.
-\end{definition}
-
-\begin{definition}{Punto aislado de un conjunto en $\R^n$}
-
-Sea $A \subseteq \R^n$. Un punto $\vec{a} \in A$ es un punto aislado de $A$ si existe $r > 0$ tal que $B(\vec{a}, r) \cap A = \{\vec{a}\}$.
-\end{definition}
-
-\begin{definition}[Interior de un conjunto]
-Sea A $\subseteq \R^n$. El interior de A es el conjunto de todos los puntos interiores de A.
-
-Se denota por
-
+Sea $A \subseteq \R^n$. Un punto $\vect{a} \in A$ es un punto interior de $A$ si y solo si:
 \[
-\operatorname{Int}(A)
-\].
-
-o simplemente
-
-\[
-A^\circ.
+\exists r > 0 : B(\vect{a}, r) \subseteq A
 \]
 \end{definition}
+
+\begin{definition}[Interior de un conjunto en $\R^n$]
+
+Sea $A \subseteq \R^n$. El interior de $A$ es el conjunto de todos los puntos interiores de $A$, denotado por $\operatorname{Int}(A)$ o $A^\circ$:
+\[
+\operatorname{Int}(A) = \{ \vect{a} \in A : \vect{a} \text{ es un punto interior de } A \}
+\]
+\end{definition}
+
+\begin{definition}[Punto frontera de un conjunto en $\R^n$]
+
+Sea $A \subseteq \R^n$. Un punto $\vect{a} \in \R^n$ es un punto frontera de $A$ si y solo si:
+\[
+\forall r > 0 : (B(\vect{a}, r) \cap A \neq \emptyset) \wedge (B(\vect{a}, r) \cap (\R^n \setminus A) \neq \emptyset)
+\]
+\end{definition}
+
+\begin{definition}[Frontera de un conjunto en $\R^n$]
+
+Sea $A \subseteq \R^n$. La frontera de $A$ es el conjunto de todos los puntos frontera de $A$, denotado por $\partial A$:
+\[
+\partial A = \{ \vect{a} \in \R^n : \vect{a} \text{ es un punto frontera de } A \}
+\]
+\end{definition}
+
+\begin{definition}[Punto adherente de un conjunto en $\R^n$]
+
+Sea $A \subseteq \R^n$. Un punto $\vect{a} \in \R^n$ es un punto adherente de $A$ si y solo si:
+\[
+\forall r > 0 : B(\vect{a}, r) \cap A \neq \emptyset
+\]
+\end{definition}
+
+\begin{definition}[Adherencia de un conjunto en $\R^n$]
+
+Sea $A \subseteq \R^n$. La adherencia de $A$ es el conjunto de todos los puntos adherentes de $A$, denotado por $\overline{A}$:
+\[
+\overline{A} = \{ \vect{a} \in \R^n : \vect{a} \text{ es un punto adherente de } A \}
+\]
+\end{definition}
+
+\begin{definition}[Punto de acumulación de un conjunto en $\R^n$]
+
+Sea $A \subseteq \R^n$. Un punto $\vect{a} \in \R^n$ es un punto de acumulación de $A$ si y solo si:
+\[
+\forall r > 0 : (B(\vect{a}, r) \setminus \{\vect{a}\}) \cap A \neq \emptyset
+\]
+\end{definition}
+
+\begin{definition}[Conjunto de acumulación de un conjunto en $\R^n$]
+
+Sea $A \subseteq \R^n$. El conjunto de acumulación de $A$ es el conjunto de todos los puntos de acumulación de $A$, denotado por $A'$:
+\[
+A' = \{ \vect{a} \in \R^n : \vect{a} \text{ es un punto de acumulación de } A \}
+\]
+\end{definition}
+
+\begin{proposition}
+Sea $A \subseteq \R^n$. Entonces:
+
+\begin{itemize}
+\item $\operatorname{Int}(A) \cap \partial A = \emptyset$.
+\item $\operatorname{Int}(A) \cup \partial A = \overline{A}$.
+\item $\partial A \subseteq \overline{A}$.
+\item $A' \subseteq \overline{A}$.
+\end{itemize}
+\end{proposition}
+
+\begin{definition}[Conjunto cerrado en $\R^n$]
+
+Sea $A \subseteq \R^n$. $A$ es un conjunto cerrado si y solo si $\partial A \subseteq A$.
+
+\end{definition}
+
+\begin{definition}[Conjunto abierto en $\R^n$]
+
+Sea $A \subseteq \R^n$. $A$ es un conjunto abierto si y solo si $\partial A \cap A = \emptyset$.
+
+\end{definition}
+
+\begin{definition}[Conjunto acotado en $\R^n$]
+Sea $A \subseteq \R^n$. $A$ es un conjunto acotado si y solo si:
+\[
+\exists r > 0 : A \subseteq B(\vect{0}, r)
+\]
+\end{definition}
+
+\begin{definition}[Conjunto compacto en $\R^n$]
+Sea $A \subseteq \R^n$. $A$ es un conjunto compacto si y solo si $A$ es cerrado y acotado.
+\end{definition}
+
+\begin{example}
+
+Sea $A = \{ (x, y) \in \R^2 : x^2 + y^2 < 1 \}$. Entonces:
+
+\begin{itemize}
+\item $A^\circ = A$, pues cada punto de $A$ es un punto interior.
+\item $\partial A = \{ (x, y) \in \R^2 : x^2 + y^2 = 1 \}$, pues cada punto de la circunferencia es un punto frontera.
+\item $\overline{A} = A \cup \partial A$, pues cada punto de $A$ es un punto adherente y cada punto de $\partial A$ es un punto adherente.
+\item $A' = A \cup \partial A$, pues cada punto de $A$ es un punto de acumulación y cada punto de $\partial A$ es un punto de acumulación.
+\item $A$ no es cerrado, pues $\partial A \not\subseteq A$.
+\item $A$ es abierto, pues $\partial A \cap A = \emptyset$.
+\item $A$ es acotado, pues $A \subseteq B(\vect{0}, 2)$.
+\item $A$ no es compacto, pues $A$ no es cerrado.
+\end{itemize}
+
+\end{example}
+
+\section{Funciones de varias variables}
+
+\begin{definition}[Función de varias variables]
+
+Sea $f$ una función de $n$ variables, denotada por $f : U \subseteq \R^n \to \R$, es una regla de correspondencia que asigna a cada $n$-tupla $\vect{x} = (x_1, x_2, \dots, x_n) \in U$ un único $z \in \R$, denotado por:
+\[
+z = f(x_1, x_2, \dots, x_n)
+\]
+\end{definition}
+
+\begin{definition}[Curvas de nivel]
+
+Sea $f : U \subseteq \R^n \to \R$ una función de varias variables. La curva de nivel de $f$ asociada al valor $c \in \R$ es el conjunto:
+\[
+\{ \vect{x} \in U : f(\vect{x}) = c \}
+\]
+\end{definition}
+
+\begin{example}
+Sea $f : \R^2 \to \R$ dada por $f(x, y) = x^2 + y^2$. Entonces, la curva de nivel asociada al valor $c$ es el conjunto:
+\[
+\{ (x, y) \in \R^2 : x^2 + y^2 = c \}
+\]
+\end{example}
 
 \end{document}
