@@ -25,6 +25,9 @@
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Observación}
 
+\theoremstyle{corollary}
+\newtheorem{corollary}[definition]{Corolario}
+
 \title{Calculo en varias variables}
 \author{Benjamín Rivas Beltrán}
 \date{\today}
@@ -247,5 +250,125 @@ Sea $f : \R^2 \to \R$ dada por $f(x, y) = x^2 + y^2$. Entonces, la curva de nive
 \{ (x, y) \in \R^2 : x^2 + y^2 = c \}
 \]
 \end{example}
+
+\section{Límites de funciones de varias variables}
+
+Recordando que el límite de una función de una variable $f : A \subseteq \R \to \R$ en un punto $a \in \R$ se define como:
+\[
+\lim_{x \to a} f(x) = L  \leftrightarrow \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L
+\]
+
+\begin{definition}[Límite de una función de varias variables]
+
+Sea $f : U \subseteq \R^n \to \R$ una función de varias variables y $\vect{a} \in \R^n$ un punto de acumulación de $U$. Decimos que el límite de $f$ cuando $\vect{x}$ tiende a $\vect{a}$ es $L \in \R$, denotado por:
+\[
+\lim_{\vect{x} \to \vect{a}} f(\vect{x}) = L
+\]
+si y solo si:
+\[
+\forall \varepsilon > 0, \exists \delta > 0 : \norm{\vect{x} - \vect{a}} < \delta \implies |f(\vect{x}) - L| < \varepsilon
+\]
+\end{definition}
+
+\textit{Nota:}
+En las siguientes secciones, cuando hablemos de límites de funciones de varias variables, siempre asumiremos que el punto al que tiende la variable es un punto de acumulación del dominio de la función, a menos que se indique lo contrario.
+
+\begin{theorem}[Unicidad del límite]
+Sea $f : U \subseteq \R^n \to \R$ una función de varias variables y $\vect{a} \in \R^n$. entonces si:
+\[
+\lim_{\vect{x} \to \vect{a}} f(\vect{x}) = L_1 \quad \text{y} \quad \lim_{\vect{x} \to \vect{a}} f(\vect{x}) = L_2
+\]
+
+entonces $L_1 = L_2$.
+
+\end{theorem}
+
+\begin{theorem}[Caracterización por trayectorias]
+Sea $f : U \subseteq \R^n \to \R$ una función de varias variables y $\vect{a} \in \R^n$. 
+
+Si:
+\[
+\lim_{\vect{x} \to \vect{a}} f(\vect{x}) = L
+\]
+entonces para toda trayectoria $\gamma: I \to U$ donde $I$ es un intervalo abierto que contiene a $t_0 \in \R$, tal que:
+\[
+\lim_{t \to t_0} \gamma(t) = \vect{a}
+\]
+
+y:
+\[
+\gamma(t) \neq \vect{a} \text{ para toda } t \neq t_0 \text{ en un entorno de } t_0
+\]
+
+se cumple que:
+\[
+\lim_{t \to t_0} f(\gamma(t)) = L
+\]
+\end{theorem}
+
+\begin{remark}[Método de las trayectorias]
+Sea $f : U \subseteq \R^n \to \R$ una función de varias variables y $\vect{a} \in \R^n$.
+
+Si existen dos trayectorias $\gamma_1: I_1 \to U$ y $\gamma_2: I_2 \to U$ donde $I_1$ e $I_2$ son intervalos abiertos que contienen a $t_1 \in \R$ y $t_2 \in \R$ respectivamente, tal que ambas cumplen las condiciones del teorema anterior, pero:
+\[
+\lim_{t \to t_1} f(\gamma_1(t)) \neq \lim_{t \to t_2} f(\gamma_2(t))
+\]
+
+entonces el límite de $f$ cuando $\vect{x}$ tiende a $\vect{a}$ no existe.
+
+\end{remark}
+
+\begin{corollary}
+Consideremos una $f: \R^2 \to \R$ y el punto $\vect{a} = (x_0, y_0)$. 
+
+Si:
+\[
+\lim_{(x, y) \to (x_0, y_0)} f(x, y) = L
+\]
+entonces para toda función $g: I \to \R$ donde $I$ es un intervalo abierto que contiene a $x_0$, tal que:
+\[
+\lim_{x \to x_0} g(x) = y_0
+\]
+
+y:
+\[
+(x, g(x)) \neq (x_0, y_0) \text{ para toda } x \neq x_0 \text{ en un entorno de } x_0
+\]
+
+se cumple que:
+
+\[
+\lim_{x \to x_0} f(x, g(x)) = L
+\]
+\end{corollary}
+
+\begin{example}
+\[
+\lim_{(x, y) \to (0, 0)} \frac{xy}{x^2 + y^2}
+\]
+\end{example}
+
+Para nuestro ejemplo, podemos intentar evaluar el límite a lo largo de diferentes trayectorias que se aproximen al punto $(0, 0)$. Por ejemplo:
+
+\begin{itemize}
+\item Trayectoria $y = 0$:
+\[
+\lim_{x \to 0} \frac{x \cdot 0}{x^2 + 0^2} = \lim_{x \to 0} 0 = 0
+\]
+\item Trayectoria $x = 0$:
+\[
+\lim_{y \to 0} \frac{0 \cdot y}{0^2 + y^2} = \lim_{y \to 0} 0 = 0
+\]
+\item Trayectoria $y = mx$ (donde $m$ es una constante):
+\begin{align*}
+\lim_{x \to 0} \frac{x(mx)}{x^2 + (mx)^2} &= \lim_{x \to 0} \frac{mx^2}{x^2 + m^2 x^2} \\
+&= \lim_{x \to 0} \frac{mx^2}{x^2(1 + m^2)} \\
+&= \lim_{x \to 0} \frac{m}{1 + m^2} \\
+&= \boxed{\frac{m}{1 + m^2}}
+\end{align*}
+
+\end{itemize}
+
+Notamos que el límite depende de la pendiente $m$ de la trayectoria, lo que implica que el límite no existe, ya que no es único. Por ejemplo, si $m = 0$, el límite es $0$, pero si $m = 1$, el límite es $\frac{1}{2}$.
 
 \end{document}
