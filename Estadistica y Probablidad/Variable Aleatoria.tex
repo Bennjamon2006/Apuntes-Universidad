@@ -396,4 +396,158 @@ M_X(t) &= \frac{1}{4} \left[ \frac{1}{t} x e^{tx} - \frac{1}{t^2} e^{tx} \right]
 
 \end{example}
 
+\newpage
+
+\section{Variables Aleatorias Discretas Importantes}
+
+Existen varias, pero solo veremos las  siguientes:
+
+\begin{itemize}
+\item Distribución de Bernoulli.
+\item Distribución Binomial.
+\item Distribución de Poisson.
+\item Distribución Hipergeométrica.
+\end{itemize}
+
+\begin{definition}[Suceso Bernoulli]
+Un suceso Bernoulli es aquel que solo tiene dos resultados posibles, éxito y fracaso. Muy utilizado las empresas, en especial en los procesos productivos (artículo bueno, artículo malo).
+\end{definition}
+
+\begin{definition}[Distribución de Bernoulli]
+Si tenemos un proceso que tiene éxito y fracaso (suceso Bernoulli), y realizamos un ensayo (tomamos una muestra de tamaño 1), entonces se genera una distribución de Bernoulli, cuya distribución de probabilidades es:
+\[
+X \sim B(p)
+\]
+
+\begin{itemize}
+  \item Su distribución de probabilidades es la siguiente:
+
+\[
+p(X = x) = p^x q^{1-x}
+\]
+
+Donde $p$ es la probabilidad de éxito, $q = 1 - p$ es la probabilidad de fracaso, y $x$ es el resultado del ensayo (0 para fracaso, 1 para éxito).
+
+\item Su valor esperado es $E[X] = p$.
+\item Su varianza es $V(X) = pq$.
+\item Su función generadora de momentos es $M_X(t) = q + pe^{t}$.
+\end{itemize}
+
+\end{definition}
+
+\begin{definition}[Distribución Binomial]
+Si tenemos un suceso Bernoulli, y tomamos una muestra aleatoria de $n$ elementos, para estudiar el número de éxitos en dicha muestra, entonces la variable aleatoria se distribuye según una distribución binomial, y se denota por:
+\[
+X \sim Bin(n, p)
+\]
+
+\begin{itemize}
+  \item Su distribución de probabilidades es la siguiente:
+\[
+p(X = x) = n C_x p^x q^{n-x}
+\]
+
+Donde $n$ es el tamaño de la muestra, $p$ es la probabilidad de éxito, $q = 1 - p$ es la probabilidad de fracaso, y $x$ es el número de éxitos (0, 1, 2, ..., n).
+
+\item Su valor esperado es $E[X] = np$.
+\item Su varianza es $V(X) = npq$.
+\item Su función generadora de momentos es $M_X(t) = (q + pe^{t})^n$.
+\end{itemize}
+
+\end{definition}
+
+\begin{definition}[Combinación]
+Las combinaciones son variaciones o arreglos con $n$ elementos tomados de $r$ a la vez, y se denotan por $n C_r$ o $\binom{n}{r}$, y se calculan de la siguiente manera:
+
+\begin{align*}
+n C_r = \binom{n}{r} = \frac{n!}{r! (n-r)!}
+\end{align*}
+
+\end{definition}
+
+\begin{example}
+En un proceso productivo, se sabe que el 5\% de los artículos producidos son defectuosos. Si se toma una muestra aleatoria de 20 artículos al azar:
+
+\begin{itemize}
+\item Indique la variable aleatoria y sus parametros.
+\item Determine su distribución de probabilidades y su recorrido.
+\item ¿Cuál es la probabilidad de que se encuentren 2 artículos defectuosos en la muestra?
+\item Determine e interprete $P(X \leq 1)$.
+\item ¿Cuántos artículos defectuosos se esperan encontrar en la muestra?
+\item Determine su varianza y su desviación estándar.
+\item Determine su función generadora de momentos.
+\end{itemize}
+
+\textbf{Solución:}
+
+\begin{itemize}
+\item La variable aleatoria es $X$, que representa el número de artículos defectuosos en la muestra, y sus parámetros son $n = 20$ y $p = 0.05$ y $q = 0.95$.
+\[
+X \sim Bin(20, 0.05) 
+\]
+\item Su distribución de probabilidades es la siguiente:
+\[
+p(X = x) = 20 C_x (0.05)^x (0.95)^{20-x}
+\]
+
+Y su recorrido es $x = 0, 1, 2, ..., 20$.
+
+\item Para determinar la probabilidad de que se encuentren 2 artículos defectuosos en la muestra, es decir, $P(X = 2)$, podemos usar la distribución de probabilidades, entonces:
+
+\begin{align*}
+P(X = 2) &= 20 C_2 (0.05)^2 (0.95)^{18} \\
+&= \frac{20!}{2! (20-2)!} (0.05)^2 (0.95)^{18} \\
+&= \frac{20 \cdot 19}{2} (0.05)^2 (0.95)^{18} \\
+&= 190 \cdot 0.0025 \cdot 0.3972143185 \\
+&\approx 0.1886
+\end{align*}
+
+La probabilidad de que se encuentren 2 artículos defectuosos en la muestra es aproximadamente 0.1886 o 18.86\%.
+
+\item Para determinar e interpretar $P(X \leq 1)$, podemos usar la distribución de probabilidades, es decir, $P(X \leq 1) = P(X = 0) + P(X = 1)$, entonces:
+
+\begin{align*}
+P(X \leq 1) &= P(X = 0) + P(X = 1) \\
+&= 20 C_0 (0.05)^0 (0.95)^{20} + 20 C_1 (0.05)^1 (0.95)^{19} \\
+&= 1 \cdot 1 \cdot (0.95)^{20} + 20 \cdot 0.05 \cdot (0.95)^{19} \\
+&= (0.95)^{20} + 1 \cdot (0.95)^{19} \\
+&= (0.95)^{19} (0.95 + 1) \\
+&= (0.95)^{19} \cdot 1.95 \\
+&\approx 0.358
+\end{align*}
+
+Interpretación: La probabilidad de que se encuentren 1 o menos artículos defectuosos en la muestra es aproximadamente 0.358 o 35.8\%.
+
+\item Para determinar cuántos artículos defectuosos se esperan encontrar en la muestra, podemos usar el valor esperado, es decir, $E[X] = np$, entonces:
+\begin{align*}
+E[X] &= np \\
+&= 20 \cdot 0.05 \\
+&= 1
+\end{align*}
+
+Por lo tanto, se espera encontrar 1 artículo defectuoso en la muestra.
+
+\item Para determinar su varianza y su desviación estándar, podemos usar la fórmula de la varianza, es decir, $V(X) = npq$, entonces:
+\begin{align*}
+V(X) &= npq \\
+&= 20 \cdot 0.05 \cdot 0.95 \
+&= 0.95
+\end{align*}
+
+Y la desviación estándar se calcula de la siguiente manera:
+\begin{align*}
+\sigma_X &= \sqrt{V(X)} \\
+&= \sqrt{0.95} \\
+&\approx 0.9747
+\end{align*}
+
+\item Para determinar su función generadora de momentos, podemos usar la fórmula de la función generadora de momentos, es decir, $M_X(t) = (q + pe^{t})^n$, entonces:
+\begin{align*}
+M_X(t) &= (q + pe^{t})^n \\
+&= (0.95 + 0.05 e^{t})^{20}
+\end{align*}
+
+\end{itemize}
+
+\end{example}
 \end{document}
