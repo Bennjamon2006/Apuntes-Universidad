@@ -513,4 +513,172 @@ Resolviendo:
 
 \end{example}
 
+\begin{definition}[Continuidad de una función de varias variables]
+Sea $f : U \subseteq \R^n \to \R$ una función de varias variables y $\vect{a} \in U$. Decimos que $f$ es continua en $\vect{a}$ si y solo si:
+\[
+\lim_{\vect{x} \to \vect{a}} f(\vect{x}) = f(\vect{a})
+\]
+
+\end{definition}
+
+\begin{example}
+Sea $f : \R^2 \to \R$ dada por:
+\[
+f(x, y) = \begin{cases}
+\frac{x y^3}{x^2 + y^4} & \text{si } (x, y) \neq (0, 0) \\
+0 & \text{si } (x, y) = (0, 0)
+\end{cases}
+\]
+
+Se sabe que:
+\[
+f(0, 0) = 0
+\]
+
+Para que $f$ sea continua en $(0, 0)$, es necesario que:
+\[
+\lim_{(x, y) \to (0, 0)} \frac{x y^3}{x^2 + y^4} = 0
+\]
+
+Se puede usar el teorema del sandwich para verificar esto. Note que:
+\[
+0 \leq \left| \frac{x y^3}{x^2 + y^4} \right| = \frac{|x|}{\sqrt{x^2 + y^4}} \cdot \frac{|y|^3}{\sqrt{x^2 + y^4}} \leq \frac{|x|}{\sqrt{x^2}} \cdot \frac{|y|^3}{\sqrt{y^4}} = |y|
+\]
+
+Además, sabemos que:
+\[
+\lim_{(x, y) \to (0, 0)} 0 = 0 \quad \text{y} \quad \lim_{(x, y) \to (0, 0)} |y| = 0
+\]
+
+Por el teorema del sandwich, concluimos que:
+\[
+\lim_{(x, y) \to (0, 0)} \frac{x y^3}{x^2 + y^4} = 0
+\]
+
+Entonces, $f$ es continua en $(0, 0)$.
+
+\end{example}
+
+\begin{example}[Ejercicio]
+Analizar la continuidad de la función $f : \R^2 \to \R$ dada por:
+
+\[
+f(x, y) = \begin{cases}
+\frac{\sin(x - y) }{e^x - e^y} & \text{si } x \neq y \\
+1 & \text{si } x = y
+\end{cases}
+\]
+
+En el punto $(1, 1)$.
+
+Se sabe que:
+\[
+f(1, 1) = 1
+\]
+
+Para que $f$ sea continua en $(1, 1)$, es necesario que:
+\[
+\lim_{(x, y) \to (1, 1)} \frac{\sin(x - y)}{e^x + e^y} = 1
+\]
+
+Cambio de variable $u = x - y \rightarrow y = x - u$. Entonces, el límite se puede reescribir como:
+\begin{align*}
+\lim_{(x, u) \to (1, 0)} \frac{\sin(u)}{e^x - e^{x - u}} &= \lim_{(x, u) \to (1, 0)} \frac{\sin(u)}{e^x (1 - e^{-u})} \\
+&= \lim_{(x, u) \to (1, 0)} \frac{1}{e^x} \cdot \frac{\sin(u)}{1 - e^{-u}} \\
+&= \frac{1}{e} \cdot \lim_{u \to 0} \frac{\sin(u)}{1 - e^{-u}}
+\end{align*}
+
+Aplicando L'Hôpital, tenemos:
+\begin{align*}
+\lim_{u \to 0} \frac{\sin(u)}{1 - e^{-u}} &= \lim_{u \to 0} \frac{\cos(u)}{e^{-u}} \\
+&= \lim_{u \to 0} e^u \cos(u) \\
+&= 1
+\end{align*}
+
+Entonces, el límite es:
+\[
+\lim_{(x, y) \to (1, 1)} \frac{\sin(x - y)}{e^x + e^y} = \frac{1}{e} \cdot 1 = \frac{1}{e}
+\]
+
+\end{example}
+
+\begin{remark}
+Sea $f : U \subseteq \R^n \to \R$ una función de varias variables.
+\begin{itemize}
+\item Se dice que $f$ es continua si es continua en cada punto de $U$.
+\item Las funciones polinómicas, racionales, trigonométricas, exponenciales y logarítmicas son continuas en sus dominios.
+\item La suma, diferencia, producto, cociente y composición de funciones continuas son continuas en sus dominios.
+\end{itemize}
+
+\end{remark}
+
+\begin{example}
+Determinar la continuidad de la función $f : \R^2 \to \R$ dada por:
+\[
+f(x, y) = \begin{cases}
+\frac{(x + 2)^5 + y^5}{(x + 2)^4 + y^4} & \text{si } (x, y) \neq (-2, 0) \\
+0 & \text{si } (x, y) = (-2, 0)
+\end{cases}
+\]
+
+\textit{Caso 1:} Para $(x, y) \neq (-2, 0)$, Por álgebra de funciones continuas, $f$ es continua en cada punto de $\R^2 \setminus \{(-2, 0)\}$.
+
+\textit{Caso 2:} Para $(x, y) = (-2, 0)$, se sabe que:
+\[
+f(-2, 0) = 0
+\]
+
+Para que $f$ sea continua en $(-2, 0)$, es necesario que:
+\[
+\lim_{(x, y) \to (-2, 0)} \frac{(x + 2)^5 + y^5}{(x + 2)^4 + y^4} = 0
+\]
+
+Cambio de variable $u = x + 2 \rightarrow x = u - 2$. Entonces, el límite se puede reescribir como:
+
+\begin{align*}
+\lim_{(u, y) \to (0, 0)} \frac{u^5 + y^5}{u^4 + y^4} &= \lim_{( u, y) \to (0, 0)} \frac{u^5}{u^4 + y^4} + \lim_{(u, y) \to (0, 0)} \frac{y^5}{u^4 + y^4} \\
+&= \lim_{(u, y) \to (0, 0)} \frac{u^5}{u^4} + \lim_{(u, y) \to (0, 0)} \frac{y^5}{y^4} \\
+&= \lim_{u \to 0} u + \lim_{y \to 0} y = 0
+\end{align*}
+
+\end{example}
+
+\section{Derivadas Parciales}
+
+\definition[Derivada parcial de una función de varias variables]
+
+Sea $\mathcal{C} = (e_1, e_2, \ldots, e_n)$ base canónica de $\R^n$.
+
+\begin{align*}
+e_1 &= \begin{pmatrix}
+1 \\
+0 \\
+\vdots \\
+0
+\end{pmatrix}, \quad
+e_2 = \begin{pmatrix}
+0 \\
+1 \\
+\vdots \\
+0
+\end{pmatrix}, \ldots
+e_n = \begin{pmatrix}
+0 \\
+0 \\
+\vdots \\
+1
+\end{pmatrix}
+\end{align*}
+
+Sea $f : U \subseteq \R^n \to \R$ una función de varias variables y $\vect{a} \in U$.
+Se definen las derivadas parciales de $f$ en $\vect{a}$ con respecto a cada variable como:
+\begin{align*}
+\frac{\partial f}{\partial x_i}(\vect{a}) &= \lim_{h \to 0} \frac{f(\vect{a} + h e_i) - f(\vect{a})}{h} \quad \text{para } i = 1, 2, \ldots, n
+\end{align*}
+
+\textit{Notación: }
+\[
+f_{x_i}(\vect{a}) = \frac{\partial f}{\partial x_i}(\vect{a}) 
+\]
+
 \end{document}

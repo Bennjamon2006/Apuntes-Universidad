@@ -530,7 +530,7 @@ Por lo tanto, se espera encontrar 1 artículo defectuoso en la muestra.
 \item Para determinar su varianza y su desviación estándar, podemos usar la fórmula de la varianza, es decir, $V(X) = npq$, entonces:
 \begin{align*}
 V(X) &= npq \\
-&= 20 \cdot 0.05 \cdot 0.95 \
+&= 20 \cdot 0.05 \cdot 0.95 \\
 &= 0.95
 \end{align*}
 
@@ -550,4 +550,318 @@ M_X(t) &= (q + pe^{t})^n \\
 \end{itemize}
 
 \end{example}
+
+\begin{definition}[Distribución de Poisson]
+Si deseamos estudiar el número de sucesos promedio en un instante de tiempo o espacio, entonces la variable aleatoria $X$ se distribuye según una distribución de Poisson con parámetro $\lambda$, y se denota por:
+\[
+X \sim Poisson(\lambda)
+\]
+
+\begin{itemize}
+\item Su distribución de probabilidades es la siguiente:
+\[
+p(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}
+\]
+Donde $\lambda$ es el número promedio de sucesos en un instante de tiempo o espacio, y $x$ es el número de sucesos (0, 1, 2, ...).
+\item Su valor esperado es $E[X] = \lambda$.
+\item Su varianza es $V(X) = \lambda$.
+\item Su función generadora de momentos es $M_X(t) = e^{\lambda (e^{t} - 1)}$.
+\end{itemize}
+
+\end{definition}
+
+\begin{example}
+En un banco comercial, se atienden 5 clientes promedio cada 15 minutos.
+
+\begin{itemize}
+\item Indique su distribución de probabilidades.
+\item Determine la probabilidad de atender 8 clientes en 15 minutos.
+\item ¿Cuál es la probabilidad de atender a lo menos un cliente en 15 minutos?
+\item Determine la probabilidad de atender a lo menos 2 clientes en media hora.
+\item ¿Cuántos clientes se esperan atender en una hora?
+\end{itemize}
+
+\textbf{Solución:}
+
+\begin{itemize}
+\item La variable aleatoria es $X$, que representa el número de clientes atendidos en 15 minutos, y su parámetro es $\lambda = 5$, entonces:
+\[
+X \sim Poisson(5)
+\]
+
+\item Para determinar la probabilidad de atender 8 clientes en 15 minutos, es decir, $P(X = 8)$, podemos usar la distribución de probabilidades, entonces:
+\begin{align*}
+P(X = 8) &= \frac{5^8 e^{-5}}{8!} \\
+&= \frac{390625 e^{-5}}{40320} \\
+&\approx 0.0653
+\end{align*}
+
+La probabilidad de atender 8 clientes en 15 minutos es aproximadamente 0.0653 o 6.53\%.
+
+\item Para determinar la probabilidad de atender a lo menos un cliente en 15 minutos, es decir, $P(X \geq 1)$, podemos usar la probabilidad complementaria, es decir, $P(X \geq 1) = 1 - P(X = 0)$, entonces:
+\begin{align*}
+P(X \geq 1) &= 1 - P(X = 0) \\
+&= 1 - \frac{5^0 e^{-5}}{0!} \\
+&= 1 - e^{-5} \\
+&\approx 0.9933
+\end{align*}
+
+La probabilidad de atender a lo menos un cliente en 15 minutos es aproximadamente 0.9933 o 99.33\%.
+
+\item Si cambia el tiempo a media hora, entonces el parámetro $\lambda$ también cambia. Aplicando una regla de tres simple, tenemos que:
+\begin{align*}
+15 \text{ minutos} &\rightarrow 5 \text{ clientes} \\
+30 \text{ minutos} &\rightarrow \lambda
+\end{align*}
+
+Entonces, $\lambda = 10$, y la variable aleatoria se distribuye según una distribución de Poisson con parámetro $\lambda = 10$, es decir:
+\[
+X \sim Poisson(10)
+\]
+
+Y su distribución de probabilidades es la siguiente:
+\[
+p(X = x) = \frac{10^x e^{-10}}{x!}
+\]
+
+Para determinar la probabilidad de atender a lo menos 2 clientes en media hora, es decir, $P(X \geq 2)$, podemos usar la probabilidad complementaria, es decir, $P(X \geq 2) = 1 - P(X < 2) = 1 - (P(X = 0) + P(X = 1))$, entonces:
+\begin{align*}
+P(X \geq 2) &= 1 - (P(X = 0) + P(X = 1)) \\
+&= 1 - \left( \frac{10^0 e^{-10}}{0!} + \frac{10^1 e^{-10}}{1!} \right) \\
+&= 1 - \left( e^{-10} + 10 e^{-10} \right) \\
+&= 1 - 11 e^{-10} \\
+&\approx 0.9995
+\end{align*}
+
+La probabilidad de atender a lo menos 2 clientes en media hora es aproximadamente 0.9995 o 99.95\%.
+
+\item Dado que el tiempo se ha cambiado a una hora, entonces el parámetro $\lambda$ también cambia. Aplicando una regla de tres simple, tenemos que:
+\begin{align*}
+15 \text{ minutos} &\rightarrow 5 \text{ clientes} \\
+60 \text{ minutos} &\rightarrow \lambda
+\end{align*}
+
+Entonces, $\lambda = 20$, y la variable aleatoria se distribuye según una distribución de Poisson con parámetro $\lambda = 20$, es decir:
+\[
+X \sim Poisson(20)
+\]
+
+Para determinar cuántos clientes se esperan atender en una hora, podemos usar el valor esperado, es decir, $E[X] = \lambda$, entonces:
+\begin{align*}
+E[X] &= \lambda \\
+&= 20
+\end{align*}
+
+Por lo tanto, se esperan atender 20 clientes en una hora.
+
+\end{itemize}
+
+\end{example}
+
+\begin{definition}[Distribución Hipergeométrica]
+Si tenemos una población con $N$ elementos, de los cuales hay $M$ elementos que cumplen una característica de interés, si tomamos una muestra aleatoria para estudiar el número de elementos que cumplen la característica de interés en la muestra, entonces la variable aleatoria $X$ se distribuye según una distribución hipergeométrica con parámetros $N$, $M$ y $n$, y se denota por:
+\[
+X \sim H(N, M, n)
+\]
+
+\begin{itemize}
+\item Su distribución de probabilidades es la siguiente:
+\[
+p(X = x) = \frac{M C_x (N - M) C_{n - x}}{N C_n}
+\]
+Donde $N$ es el tamaño de la población, $M$ es el número de elementos que cumplen la característica de interés, $n$ es el tamaño de la muestra, y $x$ es el número de elementos en la muestra que cumplen la característica de interés $(0, 1, 2, ..., min(M, n))$.
+\item Su valor esperado es $E[X] = n \cdot \frac{M}{N}$.
+\item Su varianza es $V(X) = n \cdot \frac{M}{N} \cdot (1 - \frac{M}{N})$.
+\item No tiene función generadora de momentos.
+\end{itemize}
+
+\end{definition}
+
+\begin{example}
+En una sala de computación, hay 20 PC, de los cuales 5 tienen virus. Si se toma una muestra de 4 PC al azar:
+
+\begin{itemize}
+\item Indique la distribución asociada a dicho experimento y sus parámetros.
+\item Indique su distribución de probabilidades.
+\item ¿Cuál es la probabilidad de encontrar exactamente 1 PC con virus en la muestra?
+\item Determine e interprete $P(X \leq 1)$.
+\item ¿Cuál es la probabilidad de que ninguna PC de la muestra tenga virus?
+\item ¿Cuántas PC con virus se esperan encontrar en la muestra?
+\item Determine su varianza y su desviación estándar.
+\end{itemize}
+
+\end{example}
+
+\section{Variables Aleatorias Continuas Importantes}
+Existen varias, pero solo veremos las siguientes:
+
+\begin{itemize}
+\item Distribución Uniforme.
+\item Distribución Exponencial.
+\item Distribución Normal.
+\end{itemize}
+
+\begin{definition}[Distribución Uniforme]
+La distribución uniforme en un intervalo $[a, b]$ tiene por función de densidad de probabilidad la siguiente:
+\[
+f(x) = \begin{cases}
+\frac{1}{b - a} & \text{si } a < x < b \\
+0 & \text{en otro caso}
+\end{cases}
+\]
+
+\begin{itemize}
+\item Su función de distribución es la siguiente:
+\[
+F(x) = \begin{cases}
+0 & \text{si } x < a \\
+\frac{x - a}{b - a} & \text{si } a \leq x < b \\
+1 & \text{si } x \geq b
+\end{cases}
+\]
+
+\item Su valor esperado es $E[X] = \frac{a + b}{2}$.
+\item Su varianza es $V(X) = \frac{(b - a)^2}{12}$.
+\item Su función generadora de momentos es $M_X(t) = \frac{e^{tb} - e^{ta}}{t(b - a)}$.
+
+\end{itemize}
+
+\end{definition}
+
+\begin{example}
+Antecedentes del ministerio de transporte indican que la salida de vehículos por congestión en la hora peak de la mañana tiene distribución uniforme entre 10 y 30 minutos para salir del taco.
+
+\begin{itemize}
+\item Indique la variable aleatoria y su función de densidad de probabilidad.
+\item Determine qué tan probable es estar atrapado en el taco entre 15 y 20 minutos.
+\item Determine e interprete $P(X < 20)$.
+\item Obtenga su función de distribución y con ella calcule las probabilidades del punto b) y c).
+\item ¿Cuánto tiempo se espera estar atrapado en el taco?
+\item Determine su varianza y su desviación estándar.
+\item Determine su función generadora de momentos.
+\end{itemize}
+
+\textbf{Solución:}
+
+\begin{itemize}
+\item La variable aleatoria es $X$, que representa el tiempo que se tarda en salir del taco, y su función de densidad de probabilidad es la siguiente:
+\begin{align*}
+f(x) &= \begin{cases}
+\frac{1}{30 - 10} & \text{si } 10 < x < 30 \\
+0 & \text{en otro caso}
+\end{cases} \\
+&= \begin{cases}
+\frac{1}{20} & \text{si } 10 < x < 30 \\
+0 & \text{en otro caso}
+\end{cases}
+\end{align*}
+
+
+\item Para determinar qué tan probable es estar atrapado en el taco entre 15 y 20 minutos, es decir, $P(15 < X < 20)$, podemos usar la función de densidad de probabilidad, entonces:
+\begin{align*}
+P(15 < X < 20) &= \int_{15}^{20} f(x) dx \\
+&= \int_{15}^{20} \frac{1}{20} dx \\
+&= \frac{1}{20} \int_{15}^{20} dx \\
+&= \frac{1}{20} (20 - 15) \\
+&= \frac{1}{20} \cdot 5 \\
+&= \frac{1}{4} \\
+&= 0.25
+\end{align*}
+
+La probabilidad de estar atrapado en el taco entre 15 y 20 minutos es 0.25 o 25\%.
+
+\item Para determinar e interpretar $P(X < 20)$, podemos usar la función de densidad de probabilidad, es decir, $P(X < 20) = \int_{-\infty}^{20} f(x) dx$, entonces:
+\begin{align*}
+P(X < 20) &= \int_{-\infty}^{20} f(x) dx \\
+&= \int_{10}^{20} \frac{1}{20} dx \\
+&= \frac{1}{20} \int_{10}^{20} dx \\
+&= \frac{1}{20} (20 - 10) \\
+&= \frac{1}{20} \cdot 10 \\
+&= \frac{1}{2} \\
+&= 0.5
+\end{align*}
+
+Interpretación: La probabilidad de estar atrapado en el taco por menos de 20 minutos es 0.5 o 50\%.
+
+\item Para obtener su función de distribución, podemos usar la función de densidad de probabilidad, es decir, $F(x) = \int_{-\infty}^{x} f(t) dt$, entonces:
+Para $x < 10$:
+\begin{align*}
+F(x) &= \int_{-\infty}^{x} 0 dt = 0
+\end{align*}
+
+Para $10 \leq x < 30$:
+\begin{align*}
+F(x) &= \int_{-\infty}^{x} f(t) dt \\
+&= \int_{10}^{x} \frac{1}{20} dt \\
+&= \frac{1}{20} \int_{10}^{x} dt \\
+&= \frac{1}{20} (x - 10) \\
+&= \frac{x - 10}{20}
+\end{align*}
+
+Para $x \geq 30$:
+\begin{align*}
+F(x) &= \int_{-\infty}^{x} f(t) dt = 1
+\end{align*}
+
+Entonces, la función de distribución es:
+\[
+F(x) = \begin{cases}
+0 & \text{si } x < 10 \\
+\frac{x - 10}{20} & \text{si } 10 \leqq x < 30 \\
+1 & \text{si } x \geq 30
+\end{cases}
+\] 
+
+Con la función de distribución, podemos calcular las probabilidades anteriores:
+\begin{align*}
+P(15 < X < 20) &= F(20) - F(15) \\
+&= \frac{20 - 10}{20} - \frac{15 - 10}{20} \\
+&= \frac{10}{20} - \frac{5}{20} \\
+&= \frac{5}{20} \\
+&= \frac{1}{4} \\
+&= 0.25
+\end{align*}
+
+\begin{align*}
+P(X < 20) &= F(20) \\
+&= \frac{20 - 10}{20} \\
+&= \frac{10}{20} \\
+&= \frac{1}{2} \\
+&= 0.5
+\end{align*}
+
+\item Para determinar cuánto tiempo se espera estar atrapado en el taco, podemos usar el valor esperado, es decir, $E[X] = \frac{a + b}{2}$, entonces:
+\begin{align*}
+E[X] &= \frac{10 + 30}{2} \\
+&= \frac{40}{2} \\
+&= 20
+\end{align*}
+
+Por lo tanto, se espera estar atrapado en el taco por 20 minutos.
+
+\item Para determinar su varianza y su desviación estándar, podemos usar la fórmula de la varianza, es decir, $V(X) = \frac{(b - a)^2}{12}$, entonces:
+\begin{align*}
+V(X) &= \frac{(30 - 10)^2}{12} \\
+&= \frac{20^2}{12} \\
+&= \frac{400}{12} \\
+&= \frac{100}{3} \approx 33.3333
+\end{align*}
+
+Y la desviación estándar se calcula de la siguiente manera:
+\begin{align*}
+\sigma_X &= \sqrt{V(X)} \\
+&= \sqrt{\frac{100}{3}} \\
+&= \frac{10}{\sqrt{3}} \approx 5.7735
+\end{align*}
+
+\item Para determinar su función generadora de momentos, podemos usar la fórmula de la función generadora de momentos, es decir, $M_X(t) = \frac{e^{tb} - e^{ta}}{t(b - a)}$, entonces:
+\begin{align*}
+M_X(t) &= \frac{e^{t \cdot 30} - e^{t \cdot 10}}{t(30 - 10)} \\
+&= \frac{e^{30t} - e^{10t}}{20t}
+\end{align*}
+
+\end{itemize}
+
+\end{example}
+
 \end{document}
