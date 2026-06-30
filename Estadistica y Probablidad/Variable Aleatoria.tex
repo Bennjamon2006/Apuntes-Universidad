@@ -864,4 +864,196 @@ M_X(t) &= \frac{e^{t \cdot 30} - e^{t \cdot 10}}{t(30 - 10)} \\
 
 \end{example}
 
+\begin{definition}[Distribución Exponencial]
+Recordemos que la distribución Poisson se utiliza para estudiar el número de sucesos en un intervalo de tiempo o espacio, la distribución exponencial es el inverso de la distribución Poisson, es decir, se utiliza para estudiar el tiempo que transcurre entre un suceso y otro. La variable aleatoria $X$ se distribuye según una distribución exponencial con parámetro $\lambda$, y se denota por:
+\[
+X \sim Exp(\lambda)
+\]
+
+\begin{itemize}
+\item Su función de densidad de probabilidad es la siguiente:
+\[
+f(x) = \begin{cases}
+\lambda e^{-\lambda x} & \text{si } x \geq 0 \\
+0 & \text{en otro caso}
+\end{cases}
+\]
+
+\item Su función de distribución es la siguiente:
+\[
+F(x) = \begin{cases}
+1 - e^{-\lambda x} & \text{si } x \geq 0 \\
+0 & \text{en otro caso}
+\end{cases}
+\]
+
+\item Su valor esperado es $E[X] = \frac{1}{\lambda}$.
+\item Su varianza es $V(X) = \frac{1}{\lambda^2}$.
+\item Su función generadora de momentos es $M_X(t) = \frac{\lambda}{\lambda - t}$, para $t < \lambda$.
+
+
+\end{itemize}
+
+\end{definition}
+
+\begin{example}
+El colegio médico sabe que la duración de los marcapasos tienen distribución exponencial con media 20 años.
+
+\begin{itemize}
+\item Indique su distribución de probabilidades y su parámetro.
+\item Obtenga su función de distribución.
+\item ¿Qué tan probable es que un marcapasos dure a lo más 17 años?
+\item Determine e interprete $P(X > 18)$.
+\item ¿Cuál es la probabilidad de que el marcapasos dure entre 18 y 23 años?
+\item Determine e interprete el cuartil 3.
+\item ¿Cuál es la varianza y la desviación estándar de la duración de los marcapasos?
+\item Determine su función generadora de momentos.
+\end{itemize}
+
+\textbf{Solución:}
+
+\begin{itemize}
+
+\item La variable aleatoria es $X$, que representa la duración de los marcapasos, su esperanza es $E[X] = 20$. Luego:
+\begin{align*}
+E[X] &= \frac{1}{\lambda} \\
+20 &= \frac{1}{\lambda} \\
+\lambda &= \frac{1}{20}
+\end{align*}
+
+Por lo tanto, la variable aleatoria se distribuye según una distribución exponencial con parámetro $\lambda = \frac{1}{20}$, es decir:
+\[
+X \sim Exp\left(\frac{1}{20}\right)
+\]
+
+Y su función de densidad de probabilidad es la siguiente:
+\[
+f(x) = \begin{cases}
+\frac{1}{20} e^{-\frac{1}{20} x} & \text{si } x \geq 0 \\
+0 & \text{en otro caso}
+\end{cases}
+\]
+
+\item Su función de distribución es la siguiente:
+\[
+F(x) = \begin{cases}
+1 - e^{-\frac{1}{20} x} & \text{si } x \geq 0 \\
+0 & \text{en otro caso}
+\end{cases}
+\]
+
+\item Para determinar qué tan probable es que un marcapasos dure a lo más 17 años, es decir, $P(X \leq 17)$, podemos usar la función de distribución, entonces:
+\begin{align*}
+P(X \leq 17) &= F(17) \\
+&= 1 - e^{-\frac{1}{20} \cdot 17} \\
+&= 1 - e^{-\frac{17}{20}} \\
+&\approx 0.5725
+\end{align*}
+
+La probabilidad de que un marcapasos dure a lo más 17 años es aproximadamente 0.5725 o 57.25\%.
+
+\item Para determinar e interpretar $P(X > 18)$, podemos usar la probabilidad complementaria, es decir, $P(X > 18) = 1 - P(X \leq 18) = 1 - F(18)$, entonces:
+\begin{align*}
+P(X > 18) &= 1 - F(18) \\
+&= 1 - \left( 1 - e^{-\frac{1}{20} \cdot 18} \right) \\
+&= e^{-\frac{18}{20}} \\
+&\approx 0.4066
+\end{align*}
+
+La probabilidad de que un marcapasos dure más de 18 años es aproximadamente 0.4066 o 40.66\%.
+
+\item Para determinar la probabilidad de que el marcapasos dure entre 18 y 23 años, es decir, $P(18 \leq X \leq 23)$, podemos usar la función de distribución, es decir, $P(18 \leq X \leq 23) = F(23) - F(18)$, entonces:
+\begin{align*}
+P(18 \leq X \leq 23) &= F(23) - F(18) \\
+&= \left( 1 - e^{-\frac{1}{20} \cdot 23} \right) - \left( 1 - e^{-\frac{1}{20} \cdot 18} \right) \\
+&= e^{-\frac{18}{20}} - e^{-\frac{23}{20}} \\
+&\approx 0.4066 - 0.3247 \\
+&\approx 0.0819
+\end{align*}
+
+La probabilidad de que el marcapasos dure entre 18 y 23 años es aproximadamente 0.0819 o 8.19\%.
+
+\item Para determinar e interpretar el cuartil 3, podemos usar la función de distribución, es decir, $F(Q_3) = 0.75$, entonces:
+\begin{align*}
+F(Q_3) &= 0.75 \\
+1 - e^{-\frac{1}{20} Q_3} &= 0.75 \\
+e^{-\frac{1}{20} Q_3} &= 0.25 \\
+-\frac{1}{20} Q_3 &= \ln(0.25) \\
+Q_3 &= -20 \ln(0.25) \\
+Q_3 &\approx 27.73
+\end{align*}
+
+El cuartil 3 es aproximadamente 27.73 años, lo que significa que el 75\% de los marcapasos duran a lo más 27.73 años.
+
+\item La varianza de la duración de los marcapasos es:
+\[
+V(X) = \frac{1}{\lambda^2} = \frac{1}{\left(\frac{1}{20}\right)^2} = 400
+\]
+Y la desviación estándar es:
+\[
+\sigma = \sqrt{V(X)} = \sqrt{400} = 20
+\]
+
+La varianza es 400 y la desviación estándar es 20.
+
+\item La función generadora de momentos es:
+\[
+M_X(t) = \frac{\lambda}{\lambda - t} = \frac{\frac{1}{20}}{\frac{1}{20} - t} = \frac{1}{1 - 20t}, \quad t < \frac{1}{20}
+\]
+
+\end{itemize}
+
+\end{example}
+
+\section{Distribución Normal}
+La variable aleatoria $X$ se distribuye según una distribución normal con parámetros $\mu$ y $\sigma$, y se denota por:
+\[
+X \sim N(\mu, \sigma^2)
+\]
+
+Y su función de densidad de probabilidad es la siguiente:
+\[
+f(x) = \begin{cases}
+\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}} & \text{si } x \in \mathbb{R} \\
+0 & \text{en otro caso}
+\end{cases}
+\]
+
+Donde $\mu$ es la media y $\sigma$ es la desviación estándar.
+
+Como en cualquier variable aleatoria continua, la probabilidad se obtiene mediante la integral de la función de densidad de probabilidad, es decir:
+\[
+P(a < X < b) = \int_{a}^{b} f(x) dx = \int_{a}^{b} \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}} dx
+\]
+
+El cálculo de esta integral es complicado, por lo que se utiliza la tabla de la distribución normal estándar, para ello debemos estandarizar la variable aleatoria mediante la siguiente fórmula:
+\[
+Z = \frac{X - \mu}{\sigma}
+\]
+
+En tal caso se tiene $f(z)$ tal que:
+\[
+f(z) \sim N(0, 1)
+\]
+
+Y viene dada por la siguiente función de densidad de probabilidad:
+\[
+f(z) = \begin{cases}
+\frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}} & \text{si } z \in \mathbb{R} \\
+0 & \text{en otro caso}
+\end{cases}
+\]
+
+Esta es la distribución normal estándar, y su función de densidad está tabulada, por lo que podemos calcular las probabilidades, y cumple con la siguiente propiedad:
+
+La distribución normal es simétrica respecto a su media, por lo que:
+\begin{align*}
+P(-\infty < z < 0) &= 0.5 \\
+P(0 < z < \infty) &= 0.5 \\
+P(-z_0 < z < 0) &= P(0 < z < z_0) \\
+P(z > z_0) &= P(z < -z_0)
+\end{align*}
+
+
+
 \end{document}

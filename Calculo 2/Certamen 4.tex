@@ -1,0 +1,268 @@
+\documentclass{article}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\title{Certamen 4 - Cáculo II}
+\author{Benjamín Rivas Beltrán}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Descripción de conjunto $D$}
+\[
+  D = \{(x, y) \in \R^2 : 4 < (x - 1)^2 + y^2 \leq 9 \}
+\]
+
+\begin{itemize}
+  \item Puntos interiores:
+  \[
+    D^\circ = \{(x, y) \in \R^2 : 4 < (x - 1)^2 + y^2 < 9 \}
+  \]
+  
+  \item Puntos adherentes:
+  \[
+    \overline{D} = \{(x, y) \in \R^2 : 4 \leq (x - 1)^2 + y^2 \leq 9 \}
+  \]
+  
+  \item Puntos frontera:
+  \[
+    \overline{D} = \{(x, y) \in \R^2 : (x - 1)^2 + y^2 = 4 \} \ \cup \ \{(x, y) \in \R^2 : (x - 1)^2 + y^2 = 9 \} \ \cup \ {(1, 0)}
+  \]
+
+  \item Abierto:
+  \[
+    D^\circ \neq D \Rightarrow D \text{ no es abierto}
+  \]
+
+  \item Cerrado:
+  \[
+    \overline{D} \neq D \Rightarrow D \text{ no es cerrado}
+  \]
+
+  \item Compacto:
+  \[
+    D \text{ no es cerrado} \Rightarrow D \text{ no es compacto}
+  \]
+\end{itemize}
+
+\section{Análisis de función}
+
+\[
+f(x, y) = \sqrt{\frac{x^2 + y^2 + 1}{x - y}}
+\]
+
+\begin{itemize}
+  \item Dominio:
+    \begin{align*}
+      Dom(f) &= \{(x, y) \in \R^2 : f(x, y) \in \R \} \\
+      &= \{(x, y) \in \R^2 : \sqrt{\frac{x^2 + y^2 + 1}{x - y}} \in \R \} \\
+      &= \{(x, y) \in \R^2 : \frac{x^2 + y^2 + 1}{x - y} \geq 0 \} \\
+      &= \{(x, y) \in \R^2 : x - y \geq 0 \} \\
+      &= \{(x, y) \in \R^2 : x \geq y \} \\
+    \end{align*}
+    
+  \item Curvas de nivel:
+    \[
+      C_k = \{(x, y) \in Dom(f) : f(x, y) = k\}
+    \]
+
+    \begin{itemize}
+      \item \begin{align*}
+        C_{-2} &= \{(x, y) \in Dom(f) : f(x, y) = -2\} \\
+        &= \{(x, y) \in Dom(f) : \sqrt{\frac{x^2 + y^2 + 1}{x - y}} = -2\} \\
+        &= \emptyset
+      \end{align*}
+
+      La curva de nivel es el conjunto vacío, pues una raíz cuadrada no puede ser negativa.
+
+      \item \begin{align*}
+        C_{\sqrt{2}} &= \{(x, y) \in Dom(f) : f(x, y) = \sqrt{2}\} \\
+        &= \{(x, y) \in Dom(f) : \sqrt{\frac{x^2 + y^2 + 1}{x - y}} = \sqrt{2}\} \\
+        &= \{(x, y) \in Dom(f) : \frac{x^2 + y^2 + 1}{x - y} = 2\} \\
+        &= \{(x, y) \in Dom(f) : x^2 + y^2 + 1 = 2x - 2y\} \\
+        &= \{(x, y) \in Dom(f) : x^2 - 2x + y^2 + 2y + 1 = 0\} \\
+        &= \{(x, y) \in Dom(f) : x^2 - 2x + 1 + y^2 + 2y + 1 = 1\} \\
+        &= \{(x, y) \in Dom(f) : (x - 1)^2 + (y + 1)^2 = 1\} \\
+      \end{align*}
+
+      La curva de nivel es un circunferencia de radio 1 centrada en el punto $(1, -1)$.
+
+      \item \begin{align*}
+        C_{2} &= \{(x, y) \in Dom(f) : f(x, y) = 2\} \\
+        &= \{(x, y) \in Dom(f) : \sqrt{\frac{x^2 + y^2 + 1}{x - y}} = 2\} \\
+        &= \{(x, y) \in Dom(f) : \frac{x^2 + y^2 + 1}{x - y} = 4\} \\
+        &= \{(x, y) \in Dom(f) : x^2 + y^2 + 1 = 4x - 4y\} \\
+        &= \{(x, y) \in Dom(f) : x^2 - 4x + y^2 + 4y + 1 = 0\} \\
+        &= \{(x, y) \in Dom(f) : x^2 - 4x + 4 + y^2 + 2y + 4 = 7\} \\
+        &= \{(x, y) \in Dom(f) : (x - 2)^2 + (y + 2)^2 = 7\} \\
+      \end{align*}
+
+      La curva de nivel es un circunferencia de radio $\sqrt{7}$ centrada en el punto $(2, -2)$.
+
+    \end{itemize}
+\end{itemize}
+
+\section{Continuidad y derivadas direccionales}
+
+\[
+  f(x, y) = \begin{cases}
+    \frac{5x^2y}{x^2 + y^2}, & \text{si } (x, y) \neq (0, 0) \\
+    0, & \text{si } (x, y) = (0, 0) 
+  \end{cases}
+\]
+
+\begin{itemize}
+  \item Continuidad
+  
+  \begin{itemize}
+    \item Caso 1 ($(x, y) \neq (0, 0)$):
+      Dado que para todo $(x, y) \in \R^2 : (x, y) \neq (0, 0)$, $x^2 + y^2 \neq 0$, por álgebra de funciones continuas, $f$ es continua en todos esos puntos.
+
+    \item Caso 2 ($(x, y) = (0, 0)$):
+      Se sabe que $f(0, 0) = 0$. Entonces, para que $f$ sea continua en ese punto se debe cumplir que:
+      \[
+        \lim_{(x, y) \to (0, 0)} f(x, y) = 0
+      \]
+
+      Desarrollando:
+      \[
+        \lim_{(x, y) \to (0, 0)} f(x, y) = \lim_{(x, y) \to (0, 0)} \frac{5x^2y}{x^2 + y^2}
+      \]
+
+      Note que:
+      \begin{align*}
+      0 \leq \left| \frac{5x^2y}{x^2 + y^2} \right| &= \frac{5x^2 \left| y \right|}{\sqrt{x^2 + y^2} \sqrt{x^2 + y^2}} \\ &= \frac{5x^2}{\sqrt{x^2 + y^2} }\frac{\left| y \right|}{\sqrt{x^2 + y^2}} \\ 
+      &\leq \frac{5x^2}{\sqrt{x^2} }\frac{\left| y \right|}{\sqrt{y^2}} \\
+      &= \frac{5x^2}{\left|x\right|}\frac{\left| y \right|}{\left|y\right|} \\
+      &= 5\left|x\right|
+      \end{align*}
+
+      Y como:
+      \[
+        \lim_{(x, y) \to (0, 0)} 0 = \lim_{(x, y) \to (0, 0)} 5 \left|x\right| = 0
+      \]
+
+      Por el teorema del sandwich, se concluye que:
+      \[
+      \lim_{(x, y) \to (0, 0)} \frac{5x^2y}{x^2 + y^2} = 0
+      \]
+
+      Luego, $f$ es continua en $(0, 0)$.
+  \end{itemize}
+
+  Dado que $f$ es continua en todo su dominio, se concluye que es una función continua
+  
+  
+  \item Derivadas parciales en $0, 0$
+    \begin{align*}
+      \frac{\partial f}{\partial x}(0, 0) &= \lim_{h \to 0} \frac{f((0, 0) + (h, 0)) - f(0, 0)}{h} \\
+      &= \lim_{h \to 0} \frac{f(h, 0) - 0}{h} \\
+      &= \lim_{h \to 0} \frac{\frac{5h^2 0}{h^2 + 0^2} - 0}{h} \\
+      &= \lim_{h \to 0} \frac{0}{h} \\
+      &= 0
+    \end{align*}
+
+    \begin{align*}
+      \frac{\partial f}{\partial y}(0, 0) &= \lim_{h \to 0} \frac{f((0, 0) + (0, h)) - f(0, 0)}{h} \\
+      &= \lim_{h \to 0} \frac{f(0, h) - 0}{h} \\
+      &= \lim_{h \to 0} \frac{\frac{5(0)^2 h}{0^2 + y^2} - 0}{h} \\
+      &= \lim_{h \to 0} \frac{0}{h} \\
+      &= 0
+    \end{align*}
+\end{itemize}
+
+\section{Puntos críticos}
+
+\[
+f(x, y) = x^3 - y^3 - 12x + 27y + 35
+\]
+
+Calculando las derivadas parciales:
+\[
+f_x(x, y) = 3x^2 - 12
+\]
+\[
+f_y(x, y) = -3y^2 + 27
+\]
+
+Puntos críticos:
+\begin{equation}
+  3x^2 - 12 = 0
+\end{equation}
+
+\begin{equation}
+  -3y^2 + 27 = 0
+\end{equation} 
+
+Resolviendo:
+\begin{align*}
+  3x^2 - 12 = 0 \iff x = 2 \vee x = -2 \\
+  -3y^2 + 27 = 0 \iff y = 3 \vee x = -3
+\end{align*}
+
+Los puntos críticos son:
+\begin{align*}
+  P_1(2, 3) \\
+  P_2(2, -3) \\
+  P_3(-2, 3) \\
+  P_4(-2, -3)
+\end{align*}
+
+Calculando las segundas derivadas:
+\begin{align*}
+f_{xx}(x, y) = 6x \\
+f_{yy}(x, y) = -6y \\
+f_{xy}(x, y) = 0 \\
+f_{yx}(x, y) = 0
+\end{align*}
+
+El determinante de la matriz Hessiana es:
+\[
+D(x, y) = f_{xx}(x, y)f_{yy}(x, y) - f_{xy}(x, y)f_{yx}(x, y) = 6x(-6y) - 0 = -36xy
+\]
+
+Resolviendo para cada punto crítico:
+\begin{itemize}
+  \item $P_1(2, 3)$:
+  \[
+    D(2, 3) = -36(2)(3) = -216
+  \]
+  \item $P_2(2, -3)$:
+  \[
+    D(2, -3) = -36(2)(-3) = 216
+  \]
+  \[
+    f_{xx}(2, -3) = 6(2) = 12 > 0 \Rightarrow P_2(2, -3) \text{ es un mínimo local}
+  \]
+  \item $P_3(-2, 3)$:
+  \[
+    D(-2, 3) = -36(-2)(3) = 216
+  \]
+  \[
+    f_{xx}(-2, 3) = 6(-2) = -12 < 0 \Rightarrow P_3(-2, 3) \text{ es un máximo local}
+  \]
+  \item $P_4(-2, -3)$:
+  \[
+    D(-2, -3) = -36(-2)(-3) = -216
+  \]
+\end{itemize}
+
+Por lo tanto, los puntos críticos son:
+\begin{itemize}
+  \item $P_1(2, 3)$: punto silla
+  \item $P_2(2, -3)$: máximo local
+  \item $P_3(-2, 3)$: mínimo local
+  \item $P_4(-2, -3)$: punto silla
+\end{itemize}
+
+
+\end{document}
