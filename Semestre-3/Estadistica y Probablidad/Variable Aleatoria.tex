@@ -1054,6 +1054,80 @@ P(-z_0 < z < 0) &= P(0 < z < z_0) \\
 P(z > z_0) &= P(z < -z_0)
 \end{align*}
 
+\begin{example}
+En una sucursal bancaria, los clientes solicitan prestamos de consumo, y se sabe que la cantidad solicitada tiene distribución normal con media \$200.000 y desviación estándar \$25.000.
 
+\begin{itemize}
+\item Indique la variable aleatoria y cómo se distribuye.
+\item ¿Cuál es la probabilidad de que un cliente solicite a lo menos \$230.000?
+\item ¿Qué tan probable es que un cliente solicite entre \$175.000 y \$235.000?
+\item Determine e interprete el cuartil 3.
+\item Se estima que la semana siguiente llegarán a solicitar prestamos de consumo 750 clientes, ¿cuántos clientes solicitarán más de \$240.000?
+\end{itemize}
+
+\end{example}
+
+\textbf{Solución:}
+
+\begin{itemize}
+\item La variable aleatoria es $X$, que representa la cantidad solicitada por los clientes.
+\[
+X \sim N(\mu = 200000, \sigma^2 = 25000^2)
+\]
+
+\item Para determinar la probabilidad de que un cliente solicite a lo menos \$230.000, es decir, $P(X \geq 230000)$, podemos estandarizar la variable aleatoria mediante la fórmula $Z = \frac{X - \mu}{\sigma}$, entonces:
+\begin{align*}
+P(X \geq 230000) &= P\left(Z \geq \frac{230000 - 200000}{25000}\right) \\
+&= P(Z \geq 1.2) \\
+&= 1 - P(Z < 1.2) \\
+&= 1 - 0.884930 \\
+&\approx 0.11507
+\end{align*}
+
+La probabilidad de que un cliente solicite a lo menos \$230.000 es aproximadamente 0.11507 o 11.507\%.
+
+\item Para determinar qué tan probable es que un cliente solicite entre \$175.000 y \$235.000, es decir, $P(175000 \leq X \leq 235000)$, podemos estandarizar la variable aleatoria mediante la fórmula $Z = \frac{X - \mu}{\sigma}$, entonces:
+\begin{align*}
+P(175000 \leq X \leq 235000) &= P\left(\frac{175000 - 200000}{25000} \leq Z \leq \frac{235000 - 200000}{25000}\right) \\
+&= P(-1 \leq Z \leq 1.4) \\
+&= P(Z < 1.4) - P(Z < -1) \\
+&= 0.919243 - 0.158655 \\
+&\approx 0.760588
+\end{align*}
+
+La probabilidad de que un cliente solicite entre \$175.000 y \$235.000 es aproximadamente 0.760588 o 76.0588\%.
+
+\item Para determinar e interpretar el cuartil 3, podemos usar la función de distribución, es decir, $F(Q_3) = 0.75$, entonces:
+\begin{align*}
+F(Q_3) &= 0.75 \\
+P(Z < z_0) &= 0.75 \\
+z_0 &\approx 0.68 \\
+Q_3 &= \mu + z_0 \cdot \sigma \\
+&= 200000 + 0.68 \cdot 25000 \\
+&= 200000 + 17000 \\
+&= 217000
+\end{align*}
+
+El cuartil 3 es \$217.000, lo que significa que el 75\% de los clientes solicitan a lo más \$217.000.
+
+\item Para determinar cuántos clientes solicitarán más de \$240.000, es decir, $P(X > 240000)$, podemos estandarizar la variable aleatoria mediante la fórmula $Z = \frac{X - \mu}{\sigma}$, entonces:
+\begin{align*}
+P(X > 240000) &= P\left(Z > \frac{240000 - 200000}{25000}\right) \\
+&= P(Z > 1.6) \\
+&= 1 - P(Z < 1.6) \\
+&= 1 - 0.945201 \\
+&\approx 0.054799
+\end{align*}
+
+El porcentaje de clientes que solicitarán más de \$240.000 es aproximadamente 0.054799 o 5.4799\%. Dado que se estima que llegarán 750 clientes, el número esperado de clientes que solicitarán más de \$240.000 es:
+\begin{align*}
+\text{Número de clientes} &= 750 \cdot 0.054799 \\
+&\approx 41.09925 \\
+&\approx 41
+\end{align*}
+
+Por lo tanto, se espera que aproximadamente 41 clientes soliciten más de \$240.000.
+
+\end{itemize}
 
 \end{document}

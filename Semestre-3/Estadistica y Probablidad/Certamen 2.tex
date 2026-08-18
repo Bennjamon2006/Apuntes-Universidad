@@ -1,0 +1,263 @@
+\documentclass{article}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+
+\title{Certamen 2 - Estadística y Probabilidad}
+\author{Benjamín Rivas Beltrán}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Precisión brazo robótico}
+Tiempos:
+\[
+26 - 28 - 26 - 26 - 27 - 28 - 28 - 25 - 22 - 25 - 27 - 25
+\]
+
+Se distribuyen normalmente.
+
+\begin{itemize}
+  \item Determine un intervalo de confianza del 99\% para la media de los tiempos de operación del brazo robótico.
+  \item El ingeniero a cargo del proyecto sabe que si el tiempo promedio de operación del brazo robótico es mayor a 26.5 milisegundos se debe parar el proceso productivo para cambiar el brazo robótico. Con un 5\% de significancia, según la región critica, ¿qué recomienda usted?
+  \item Use el valor p para confirmar su respuesta anterior.
+\end{itemize}
+
+\textbf{Solución:}
+\begin{itemize}
+  \item Intervalo de confianza del 99\%:
+  \[
+  \bar{x} = 25.9, \quad n = 12, \quad s = 1.7
+  \]
+
+  Aplicando la fórmula del intervalo de confianza:
+  \[
+  IC = \bar{x} \pm t_{\alpha/2, n-1} \cdot \frac{s}{\sqrt{n}}
+  \]
+  Donde:
+  \[
+  t_{\alpha/2, n-1} = t_{0.005, 11} \approx 3.106
+  \]
+  Entonces:
+  \[
+  IC = 25.9 \pm 3.106 \cdot \frac{1.7}{\sqrt{12}} \approx 25.9 \pm 1.52
+  \]
+  Por lo tanto, el intervalo de confianza del 99\% es aproximadamente:
+  \[
+  (24.38, 27.42)
+  \]
+
+  \item Prueba de hipótesis:
+  Las hipótesis son:
+  \[
+  H_0: \mu \leq 26.5 \quad \text{} H_1: \mu > 26.5
+  \]
+
+  Calculamos el estadístico de prueba:
+  \[
+  t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{25.9 - 26.5}{1.7/\sqrt{12}} \approx -1.22
+  \]
+  El valor crítico para un nivel de significancia del 5\% y 11 grados de libertad es:
+  \[
+  t_{0.05, 11} = 1.796
+  \]
+
+  Dado que \( t = -1.22 < 1.796 \), no rechazamos \( H_0 \). Por lo tanto, no hay suficiente evidencia para recomendar detener el proceso productivo.
+
+  \item Valor p:
+  El valor p se calcula como:
+  \[
+  p = P(T > -1.22) \approx 0.88
+  \]
+  Dado que \( p = 0.88 > 0.05 \), no rechazamos \( H_0 \). Esto confirma nuestra decisión anterior de no detener el proceso productivo. 
+\end{itemize}
+
+\section{Prueba ingenieros civiles}
+Los datos se distribuyen normalmente con una media de 580 puntos y una desviación estándar de 38 puntos. El 6.82\% de los mejores puntajes son seleccionados, los que tienen entre 595 y 620 quedan en lista de espera.
+
+\begin{itemize}
+  \item Determine el puntaje mínimo que debe obtener un ingeniero civil para ser seleccionado.
+  \item Si la prueba la rinden 40 ingenieros civiles, ¿cuántos postulantes quedarían en lista de espera?
+  \item Determine e interprete el percentil 85.
+\end{itemize}
+
+\textbf{Solución:}
+\begin{itemize}
+  \item Puntaje mínimo para ser seleccionado:
+  Sea \( X \) la variable aleatoria que representa los puntajes de los ingenieros civiles. Sabemos que \( X \sim N(580, 38^2) \).
+
+  Queremos encontrar el puntaje mínimo \( x \) tal que:
+  \[
+  P(X > x) = 0.0682
+  \]
+  Esto implica que:
+  \[
+  P(X \leq x) = 1 - 0.0682 = 0.9318
+  \]
+  
+  Estandardizamos la variable:
+  \[
+  Z = \frac{X - 580}{38}
+  \]
+  Buscamos \( z \) tal que \( P(Z \leq z) = 0.9318 \). Usando la tabla de la distribución normal estándar, encontramos que \( z \approx 1.48 \).
+
+  Entonces:
+  \[
+  \frac{x - 580}{38} = 1.48 \implies x = 580 + 1.48 \cdot 38 \approx 580 + 56.24 \approx 636.24
+  \]
+  Por lo tanto, el puntaje mínimo para ser seleccionado es aproximadamente 636 puntos. 
+
+  \item Número de postulantes en lista de espera:
+  Queremos encontrar el número de ingenieros civiles que quedan en lista de espera, es decir, aquellos con puntajes entre 595 y 620.
+  Calculamos las probabilidades:
+  \begin{align*}
+  P(595 \leq X \leq 620) = P\left(\frac{595 - 580}{38} \leq Z \leq \frac{620 - 580}{38}\right) \\ = P(0.395 \leq Z \le 1.053) = P(Z \leq 1.053) - P(Z \leq 0.395)
+  \end{align*}
+
+  Reemplazando los valores:
+  \[
+  P(Z \leq 1.053) \approx 0.853, \quad P(Z \leq 0.395) \approx 0.653
+  \]
+  Entonces:
+  \[
+  P(595 \leq X \leq 620) \approx 0.853 - 0.653 = 0.2
+  \]
+  Si 40 ingenieros civiles rinden la prueba, el   número esperado de postulantes en lista de espera es:
+  \[
+  40 \cdot 0.2 = 8
+  \]
+
+  \item Percentil 85:
+  El percentil 85 es el valor \( x \) tal que:
+  \[
+  P(X \leq x) = 0.85
+  \]
+  Estandardizamos:
+  \[
+  Z = \frac{x - 580}{38}
+  \]
+  Buscamos \( z \) tal que \( P(Z \leq z) = 0.85 \). Usando la tabla de la distribución normal estándar, encontramos que \( z \approx 1.03 \).
+
+  Entonces:
+  \[
+  \frac{x - 580}{38} = 1.03 \implies x = 580 + 1.03 \cdot 38 \approx 580 + 39.14 \approx 619.14
+  \]
+  Por lo tanto, el percentil 85 es aproximadamente 619 puntos. Esto significa que el 85\% de los ingenieros civiles obtuvieron un puntaje menor o igual a 619 puntos, y el 15\% obtuvo un puntaje mayor a este valor.
+\end{itemize}
+
+\section{Martillo demoledor de cncreta}
+Vida útil de 4 años, con distribución exponencial.
+
+\begin{itemize}
+  \item Obtenga la función de densidad de probabilidad y la función de distribución acumulada.
+  \item Determine la probabilidad de que un martillo demoledor dure a lo más 7 años.
+  \item Si el martillo lleva funcionando más de 4 años, ¿cuál es la probabilidad de que dure a lo más 7 años?
+  \item Determine e interprete el quintil 4.
+\end{itemize}
+
+\textbf{Solución:}
+\begin{itemize}
+  \item Función de densidad de probabilidad y función de distribución acumulada:
+  Dado que la vida útil del martillo demoledor sigue una distribución exponencial con media \( \mu = 4 \) años, la tasa \( \lambda \) se calcula como:
+  \[
+  \lambda = \frac{1}{\mu} = \frac{1}{4} = 0.25
+  \]
+  La función de densidad de probabilidad es:
+  \[
+  f(x) = \lambda e^{-\lambda x} = 0.25 e^{-0.25 x}, \quad x \geq 0
+  \]
+  La función de distribución acumulada es:
+  \[
+  F(x) = 1 - e^{-\lambda x} = 1 - e^{-0.25 x}, \quad x \geq 0
+  \]
+
+  \item Probabilidad de que un martillo demoledor dure a lo más 7 años:
+  \[
+  P(X \leq 7) = F(7) = 1 - e^{-0.25 \cdot 7} \approx 1 - e^{-1.75} \approx 1 - 0.1738 \approx 0.8262
+  \]
+
+  La probabilidad de que un martillo demoledor dure a lo más 7 años es aproximadamente 0.8262 o 82.62\%.
+
+  \item Probabilidad de que dure a lo más 7 años dado que lleva funcionando más de 4 años:
+  Usamos la fórmula de probabilidad condicional:
+  \[
+  P(X \leq 7 \mid X > 4) = \frac{P(4 < X \leq 7)}{P(X > 4)} = \frac{F(7) - F(4)}{1 - F(4)}
+  \]
+  Calculamos \( F(4) \):
+  \[
+  F(4) = 1 - e^{-0.25 \cdot 4} = 1 - e^{-1} \approx 1 - 0.3679 \approx 0.6321
+  \] 
+  Calculamos \( F(7) \):
+  \[
+  F(7) \approx 0.8262
+  \]
+  Entonces:
+  \[
+  P(X \leq 7 \mid X > 4) = \frac{0.8262 - 0.6321}{1 - 0.6321} = \frac{0.1941}{0.3679} \approx 0.5277
+  \]
+  La probabilidad de que un martillo demoledor dure a lo más 7 años dado que lleva funcionando más de 4 años es aproximadamente 0.5277 o 52.77\%.
+
+  \item Quintil 4:
+  El quintil 4 es el valor \( x \) tal que:
+  \[
+  P(X \leq x) = 0.8
+  \]
+  Usamos la función de distribución acumulada:
+  \[
+  0.8 = 1 - e^{-0.25 x} \implies e^{-0.25 x} = 0.2 \implies -0.25 x = \ln(0.2) \implies x = -\frac{\ln(0.2)}{0.25} \approx 6.4378
+  \]
+  Por lo tanto, el quintil 4 es aproximadamente 6.44 años. Esto significa que el 80\% de los martillos demoledores tienen una vida útil menor o igual a 6.44 años, y el 20\% restante tiene una vida útil mayor a este valor.
+\end{itemize}
+
+\section{Ladrillos construcción}
+Los pesos de los ladrillos de construcción se distribuyen normalmente con una media de 4.8 kg, y se extrae una muestra de 36 ladrillos con peso promedio de 4.72 kg y desviación estándar de 0.2 kg.
+
+\begin{itemize}
+  \item Con un 5\% de significancia, determine si el peso promedio de los ladrillos es menor a 4.8 kg. Utilice la región crítica y el valor p.
+  \item Determine un intervalo de confianza del 95\% para el peso promedio de los ladrillos.
+\end{itemize}
+
+\begin{itemize}
+  \item Prueba de hipótesis:
+  Las hipótesis son:
+  \[
+  H_0: \mu = 4.8 \quad \text{} H_1: \mu < 4.8
+  \]
+
+  Dado que la muestra es grande (\( n = 36 \)), podemos usar la distribución normal para el estadístico de prueba:
+  \[
+  z = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{4.72 - 4.8}{0.2/\sqrt{36}} = \frac{-0.08}{0.0333} = -2.4
+  \]
+
+  El valor crítico para un nivel de significancia del 5\% en una prueba unilateral es:
+  \[
+  z_{0.05} = -1.645
+  \]
+
+  Dado que \( z = -2.4 < -1.645 \), rechazamos \( H_0 \). Por lo tanto, hay suficiente evidencia para concluir que el peso promedio de los ladrillos es menor a 4.8 kg.
+
+  Esta decisión se confirma con el valor p:
+  \[
+  p = P(Z < -2.4) \approx 0.0082
+  \]
+  Dado que \( p = 0.0082 < 0.05 \), rechazamos \( H_0 \) y concluimos que el peso promedio de los ladrillos es menor a 4.8 kg.
+
+  \item Intervalo de confianza del 95\%:
+  El intervalo de confianza del 95\% para la media se calcula como:
+  \[
+  IC = \bar{x} \pm z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}
+  \]
+  Donde \( z_{\alpha/2} = z_{0.025} \approx 1.96 \).
+  \[
+  IC = 4.72 \pm 1.96 \cdot \frac{0.2}{\sqrt{36}} = 4.72 \pm 1.96 \cdot 0.0333 = 4.72 \pm 0.0653
+  \]
+  Por lo tanto, el intervalo de confianza del 95\% para el peso promedio de los ladrillos es:
+  \[
+  (4.6547, 4.7853)
+  \]
+  
+\end{itemize}
+
+\end{document}
