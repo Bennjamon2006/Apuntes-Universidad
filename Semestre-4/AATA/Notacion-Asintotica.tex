@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+
+\title{Notación Asintótica}
+\author{Benjamín Rivas Beltrán}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Notación Theta}
+
+Sea $g(n)$ una función que describe el tiempo de ejecución de un algoritmo en función del tamaño de la entrada $n$. Definimos la notación Theta ($\Theta$) de la siguiente manera:
+\[
+\Theta(g(n)) = \{ f(n) : \exists c_1, c_2 > 0, n_0 \geq 0 \text{ tal que } c_1 g(n) \leq f(n) \leq c_2 g(n) \text{ para todo } n \geq n_0 \}
+\]
+
+\subsection{Propiedades de la notación Theta}
+\begin{itemize}
+  \item $f(n) \in \Theta(g(n))$ implica que $f(n)$ y $g(n)$ crecen al mismo ritmo asintóticamente.
+  \item La notación Theta está pensado para funciones monótonas y no negativas.
+  \item Existe la equivalencia:
+  \[
+  f(n) \in \Theta(g(n)) \iff \lim_{n \to \infty} \frac{f(n)}{g(n)} = c, \text{ donde } 0 < c < \infty
+  \]
+\end{itemize}
+\end{document}
