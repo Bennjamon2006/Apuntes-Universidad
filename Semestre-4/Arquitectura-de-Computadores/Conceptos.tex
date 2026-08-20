@@ -1,7 +1,9 @@
 \documentclass{article}
 
 \usepackage[spanish]{babel}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{remark}{Nota}[section]
 
 \title{Conceptos - Arquitectura de Computadores}
 \author{Benjamín Rivas Beltrán}
@@ -15,7 +17,7 @@
 
 \begin{itemize}
   \item \textbf{Bit:} Unidad mínima de información que puede tomar el valor de 0 o 1 (encendido o apagado).
-  \item \textbf{Byte:} Conjunto de 8 bits que representa un carácter o un valor numérico.
+  \item \textbf{Byte:} Conjunto de 8 bits que representa un carácter o un valor numérico. Mínimo de información direccionable en un computador.
   \item \textbf{Información:} Todo aquello que puede reducuir la incertidumbre.
 \end{itemize}
 
@@ -23,6 +25,26 @@
 
 \begin{itemize}
   \item Los bytes son 8 bits, pues existen 256 combinaciones posibles de 0 y 1, lo que permite representar todos los caracteres de un alfabeto, incluyendo letras, números y símbolos.
+  \item Un byte puede contener un carácter, un número o una dirección de memoria, dependiendo del contexto en el que se utilice.
+  \item Los caracteres se representan con un valor numérico en un sistema de codificación, como ASCII o Unicode, que asigna un número único a cada carácter.
 \end{itemize}
+
+\section{Matemática Binaria (base 2)}
+
+\begin{remark}
+  Los digitos de una base $b$ son los números del 0 al $b-1$.
+
+  Por ejemplo:
+  \begin{itemize}
+    \item Binario (base 2): dígitos 0 y 1.
+    \item Cuaternario (base 4): dígitos 0, 1, 2 y 3.
+    \item Octal (base 8): dígitos 0, 1, 2, 3, 4, 5, 6 y 7.
+    \item Decimal (base 10): dígitos 0, 1, 2, 3, 4, 5, 6, 7, 8 y 9
+    \item 11-ario (base 11): dígitos 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 y A.
+    \item Hexadecimal (base 16): dígitos 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E y F.
+  \end{itemize}
+\end{remark}
+
+
 
 \end{document}

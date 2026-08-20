@@ -1,7 +1,19 @@
 \documentclass{article}
 
 \usepackage[spanish]{babel}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[section]
+\newtheorem{example}[definition]{Ejemplo}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Teorema}
+\newtheorem{proposition}[definition]{Proposición}
+\newtheorem{lemma}[definition]{Lema}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Observación}
 
 \title{Notación Asintótica}
 \author{Benjamín Rivas Beltrán}
@@ -11,12 +23,18 @@
 
 \maketitle
 
-\section{Notación Theta}
+\section{Notación Asintótica}
+
+
+
+\begin{definition}[Notación Theta]
 
 Sea $g(n)$ una función que describe el tiempo de ejecución de un algoritmo en función del tamaño de la entrada $n$. Definimos la notación Theta ($\Theta$) de la siguiente manera:
 \[
-\Theta(g(n)) = \{ f(n) : \exists c_1, c_2 > 0, n_0 \geq 0 \text{ tal que } c_1 g(n) \leq f(n) \leq c_2 g(n) \text{ para todo } n \geq n_0 \}
+\Theta(g(n)) = \{ f(n) : \exists c_1, c_2 > 0, n_0 \geq 0 \text{ tal que } c_1 g(n) \leq f(n) \leq c_2 g(n) \forall n \geq n_0 \}
 \]
+
+\end{definition}
 
 \subsection{Propiedades de la notación Theta}
 \begin{itemize}
@@ -27,4 +45,102 @@ Sea $g(n)$ una función que describe el tiempo de ejecución de un algoritmo en 
   f(n) \in \Theta(g(n)) \iff \lim_{n \to \infty} \frac{f(n)}{g(n)} = c, \text{ donde } 0 < c < \infty
   \]
 \end{itemize}
+
+\begin{theorem}
+Sea:
+\[
+f(n) = \sum_{i=0}^{k} a_i n^i
+\]
+
+Entonces:
+\[
+f(n) \in \Theta(n^k)
+\]
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+  \lim_{n \to \infty} \frac{f(n)}{n^k} &= \lim_{n \to \infty} \frac{\sum_{i=0}^{k} a_i n^i}{n^k} \\
+  &= \lim_{n \to \infty} \sum_{i=0}^{k} a_i n^{i-k} \\
+  &= a_k \quad \text{ya que todos los términos con $i < k$ tienden a 0 cuando $n \to \infty$} \\
+  &\implies f(n) \in \Theta(n^k)
+\end{align*}
+\end{proof}
+
+\begin{definition}[Notación O]
+Sea $g(n)$ una función que describe el tiempo de ejecución de un algoritmo en función del tamaño de la entrada $n$. Definimos la notación O ($O$) de la siguiente manera:
+\[
+O(g(n)) = \{ f(n) : \exists c > 0, n_0 \geq 0 \text{ tal que } f(n) \leq c g(n) \forall n \geq n_0 \}
+\]
+\end{definition}
+
+\begin{remark}
+Existe la equivalencia:
+\[
+f(n) \in O(g(n)) \iff \lim_{n \to \infty} \frac{f(n)}{g(n)} = c, \text{ donde } 0 \leq c < \infty
+\]
+\end{remark}
+
+\begin{definition}[Notación Omega]
+Sea $g(n)$ una función que describe el tiempo de ejecución de un algoritmo en función del tamaño de la entrada $n$. Definimos la notación Omega ($\Omega$) de la siguiente manera:
+\[
+\Omega(g(n)) = \{ f(n) : \exists c > 0, n_0 \geq 0 \text{ tal que } f(n) \geq c g(n) \forall n \geq n_0 \}
+\]
+\end{definition}
+
+\begin{remark}
+Existe la equivalencia:
+\[
+f(n) \in \Omega(g(n)) \iff \lim_{n \to \infty} \frac{f(n)}{g(n)} = c, \text{ donde } 0 < c \leq \infty
+\]
+\end{remark}
+
+\begin{theorem}
+Sean $f(n)$ y $g(n)$ funciones que describen el tiempo de ejecución de un algoritmo en función del tamaño de la entrada $n$. Entonces:
+\[
+f(n) \in \Theta(g(n)) \iff f(n) \in O(g(n)) \text{ y } f(n) \in \Omega(g(n))
+\]
+\end{theorem}
+
+\begin{proof}
+\begin{itemize}
+  \item[$\Rightarrow$] Supongamos que $f(n) \in \Theta(g(n))$. Entonces, por definición, existen $c_1, c_2 > 0$ y $n_0 \geq 0$ tales que:
+  \[
+  c_1 g(n) \leq f(n) \leq c_2 g(n) \quad \text{para todo } n \geq n_0
+  \]
+  De esta desigualdad se sigue que:
+  \[
+  f(n) \geq c_1 g(n) \quad \text{y} \quad f(n) \leq c_2 g(n)
+  \]
+  Por lo tanto, $f(n) \in O(g(n))$ y $f(n) \in \Omega(g(n))$.
+
+  \item[$\Leftarrow$] Supongamos que $f(n) \in O(g(n))$ y $f(n) \in \Omega(g(n))$. Entonces, existen $c_1, c_2 > 0$ y $n_0, n_1 \geq 0$ tales que:
+  \[
+  f(n) \leq c_1 g(n) \quad \text{para todo } n \geq n_0
+  \]  
+  \[
+  f(n) \geq c_2 g(n) \quad \text{para todo } n \geq n_1
+  \]
+  De estas desigualdades se sigue que:
+  \[
+  c_2 g(n) < f(n) < c_1 g(n)
+  \]
+  para todo $n$ suficientemente grande. Por lo tanto, $f(n) = O(g(n)) = O(g(n))$, lo cual implica que $f(n)$ y $g(n)$ crecen al mismo ritmo asintóticamente.
+\end{itemize}
+\end{proof} 
+
+\section{Otras notaciones asintóticas}
+
+Existen las siguientes notaciones asintóticas adicionales:
+\begin{itemize}
+  \item Notación little-o ($o$): 
+    \[
+    o(g(n)) = \{ f(n) : \forall c > 0, \exists n_0 \geq 0 : f(n) < c g(n) \forall n \geq n_0 \}
+    \]
+  \item Notación little-omega ($\omega$):
+    \[
+    \omega(g(n)) = \{ f(n) : \forall c > 0, \exists n_0 \geq 0 \text{ tal que } f(n) > c g(n) \forall n \geq n_0 \}
+    \]
+\end{itemize}
+
 \end{document}
